@@ -91,6 +91,28 @@ window.TOKO_DATA = {
   ],
   "produk": [
     {
+      "id": "P-0029",
+      "nama": "rwytg4w2SEGYW4",
+      "mobil": [
+        "kia-carens-1"
+      ],
+      "kategori": "rem",
+      "harga": 262532234,
+      "hargaCoret": 0,
+      "stok": 1,
+      "berat": 12,
+      "kondisi": "Bekas",
+      "kualitas": "Original",
+      "kodePart": "",
+      "foto": [
+        "images/produk/rwytg4w2segyw4-mwdox2sykevp.jpg"
+      ],
+      "deskripsi": "",
+      "spesifikasi": [],
+      "unggulan": false,
+      "aktif": true
+    },
+    {
       "id": "P-0001",
       "nama": "Kampas Rem Depan (Brake Pad)",
       "mobil": [
