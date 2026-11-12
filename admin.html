@@ -41,7 +41,7 @@
     </div>
     <div class="notice notice--warn" id="offlineNotice" hidden>
       <strong>Mode tanpa koneksi.</strong>
-      <span>Perubahan tidak bisa langsung tampil di website. Hubungkan ke GitHub di tab <a href="#" data-goto="koneksi">Koneksi &amp; Publikasi</a> (cukup sekali), atau unduh file lalu upload manual.</span>
+      <span>Perubahan belum bisa langsung tampil di website. Atur koneksi <b>sekali saja</b> di tab <a href="#" data-goto="koneksi">Koneksi &amp; Publikasi</a>, setelah itu cukup klik Publikasikan.</span>
     </div>
 
     <!-- ===== PRODUK ===== -->
@@ -86,9 +86,32 @@
 
     <!-- ===== KONEKSI ===== -->
     <section class="panel" id="panel-koneksi">
+      <div class="box box--hero">
+        <span class="badge-rec">Disarankan</span>
+        <h2>Login dengan password</h2>
+        <div id="serverOn" hidden>
+          <p>Mode login aktif. Di HP atau laptop mana pun, cukup buka <code>/admin.html</code>, masukkan password, lalu klik <b>Publikasikan</b>. Website otomatis diperbarui, tanpa upload manual.</p>
+          <div class="form__actions">
+            <button class="btn btn--primary" id="loginBtn" hidden>Masuk</button>
+            <button class="btn btn--outline" id="logoutBtn" hidden>Keluar dari perangkat ini</button>
+          </div>
+        </div>
+        <div id="serverOff">
+          <p>Atur <b>sekali saja</b> di Vercel. Setelah itu, cukup masukkan password untuk publikasi otomatis dari perangkat mana pun.</p>
+          <ol class="steps">
+            <li>Buat token GitHub. Caranya ada di kotak <b>"Cara membuat token"</b> di bawah (langkah 1–5).</li>
+            <li>Buka <b>vercel.com</b>, lalu pilih project website ini, lalu <b>Settings → Environment Variables</b>.</li>
+            <li>Tambahkan <code>GITHUB_TOKEN</code> dengan nilai token tadi.</li>
+            <li>Tambahkan <code>ADMIN_PASSWORD</code> dengan password pilihan Anda untuk masuk panel admin.</li>
+            <li>Buka tab <b>Deployments</b>, klik ⋯ pada deployment teratas, lalu pilih <b>Redeploy</b>.</li>
+            <li>Muat ulang halaman ini. Layar login akan muncul.</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="grid2">
-        <div class="box">
-          <h2>Hubungkan ke GitHub</h2>
+        <div class="box" id="tokenBox">
+          <h2>Cara lain: token di perangkat ini</h2>
           <p class="hint">Dengan terhubung, tombol <b>Publikasikan</b> langsung memperbarui website (Vercel memperbarui otomatis dalam ±1 menit). Data koneksi hanya disimpan di browser ini.</p>
           <form id="connForm" class="form">
             <label class="field"><span>Repository GitHub</span>
@@ -109,7 +132,7 @@
           </form>
         </div>
         <div class="box">
-          <h2>Cara membuat token (sekali saja)</h2>
+          <h2>Cara membuat token</h2>
           <ol class="steps">
             <li>Login ke GitHub, buka <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b>.</li>
             <li>Klik <b>Generate new token</b>. Beri nama, mis. "Admin Toko", dan atur masa berlaku.</li>
@@ -144,6 +167,20 @@
         <button class="btn btn--primary" type="submit" form="editorForm">Simpan</button>
       </div>
     </div>
+  </div>
+
+  <!-- ===== LOGIN ===== -->
+  <div class="login" id="login" hidden>
+    <form class="login__box" id="loginForm">
+      <span class="brand__mark brand__mark--lg"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M12 2l2.2 2.6 3.4-.5.5 3.4L20.7 9.7 19.4 12.9l1.3 3.2-2.6 2.2-.5 3.4-3.4-.5L12 23.8 9.8 21.2l-3.4.5-.5-3.4-2.6-2.2 1.3-3.2L3.3 9.7l2.6-2.2.5-3.4 3.4.5z" fill="#fff"/><circle cx="12" cy="12.9" r="3.6" fill="#d93a2f"/></svg></span>
+      <h1>Masuk Panel Admin</h1>
+      <p class="hint">Masukkan password admin toko.</p>
+      <input class="input" type="password" id="loginPw" placeholder="Password" autocomplete="current-password" required />
+      <label class="switch"><input type="checkbox" id="loginIngat" checked> Ingat di perangkat ini</label>
+      <p class="login__err" id="loginErr" hidden></p>
+      <button class="btn btn--primary" type="submit">Masuk</button>
+      <button class="btn btn--danger-ghost btn--sm" type="button" id="loginSkip">Lanjut tanpa login (hanya lihat / unduh)</button>
+    </form>
   </div>
 
   <div class="loading" id="loading" hidden><div class="loading__box"><span class="spinner"></span><p id="loadingText">Memuat…</p></div></div>

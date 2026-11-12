@@ -27,6 +27,10 @@
     editingIndex: -1,
   };
   try { S.conn = JSON.parse(localStorage.getItem(CONN_KEY)); } catch (e) { S.conn = null; }
+  const PW_KEY = "admin_pw";
+  S.server = false;   // true jika /api/admin aktif di Vercel
+  S.pw = null;        // password admin (mode login)
+  const terhubung = () => !!(S.pw || S.conn);
 
   /* ---------- Helpers ---------- */
   const $ = (s, el = document) => el.querySelector(s);
@@ -151,6 +155,85 @@
     return true;
   }
 
+  /* ---------- Mode login password (via /api/admin di Vercel) ---------- */
+  async function api(action, extra = {}) {
+    const res = await fetch("api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password: S.pw, action, ...extra }),
+      cache: "no-store",
+    });
+    let j = {};
+    try { j = await res.json(); } catch (e) { /* abaikan */ }
+    if (!res.ok) { const err = new Error(j.error || `HTTP ${res.status}`); err.status = res.status; throw err; }
+    return j;
+  }
+  async function cekServer() {
+    if (location.protocol === "file:") return false;
+    try {
+      const r = await fetch("api/admin", { cache: "no-store" });
+      return r.ok && (await r.json()).enabled === true;
+    } catch (e) { return false; }
+  }
+  async function ambilDariServer() {
+    const r = await api("load");
+    return { data: normalisasi(parseDataJs(r.content)), sha: r.sha };
+  }
+  async function publikasiServer() {
+    const dipakai = new Set(fotoDipakai());
+    const fotoBaru = Object.keys(S.pending).filter((p) => dipakai.has(p));
+    const files = [];
+    let i = 0;
+    for (const path of fotoBaru) {
+      loading(`Mengunggah foto ${++i} dari ${fotoBaru.length}…`);
+      const r = await api("blob", { content: S.pending[path].split(",")[1] });
+      files.push({ path, sha: r.sha });
+    }
+    loading("Menyimpan data…");
+    const kirim = (force) => api("commit", { files, dataJs: buildDataJs(), baseSha: S.sha, force, message: `Update data toko via panel admin (${S.data.produk.length} produk)` });
+    let r;
+    try { r = await kirim(false); }
+    catch (e) {
+      if (e.status !== 409) throw e;
+      loading(false);
+      if (!confirm("Data di website sudah diubah dari perangkat/orang lain sejak halaman ini dibuka.\n\nTetap timpa dengan versi Anda?")) return false;
+      loading("Menyimpan data…");
+      r = await kirim(true);
+    }
+    S.sha = r.sha;
+    Object.assign(S.preview, S.pending);
+    S.pending = {};
+    return true;
+  }
+
+  function tampilLogin(show) {
+    $("#login").hidden = !show;
+    document.body.classList.toggle("no-scroll", show);
+    if (show) setTimeout(() => $("#loginPw").focus(), 50);
+  }
+  async function login(pw, ingat) {
+    S.pw = pw;
+    try {
+      await api("login");
+      const { data, sha } = await ambilDariServer();
+      S.data = data; S.sha = sha; S.pending = {};
+      try {
+        (ingat ? localStorage : sessionStorage).setItem(PW_KEY, pw);
+        (ingat ? sessionStorage : localStorage).removeItem(PW_KEY);
+      } catch (e) { /* abaikan */ }
+      return true;
+    } catch (e) {
+      S.pw = null;
+      throw e;
+    }
+  }
+  function logout() {
+    try { localStorage.removeItem(PW_KEY); sessionStorage.removeItem(PW_KEY); } catch (e) { /* abaikan */ }
+    S.pw = null;
+    renderKoneksi();
+    tampilLogin(true);
+  }
+
   function fotoDipakai() {
     return [...S.data.produk.flatMap((p) => p.foto), ...S.data.mobil.map((m) => m.foto).filter(Boolean)];
   }
@@ -173,14 +256,20 @@
 
   async function publikasikan() {
     if (!S.dirty) return;
-    if (!S.conn) { unduhSemua(); return; }
+    if (!terhubung()) {
+      if (S.server) { tampilLogin(true); return; }
+      bukaTab("koneksi");
+      toast("Belum terhubung. Atur koneksi sekali di halaman ini agar bisa publikasi otomatis.", true);
+      return;
+    }
     try {
       loading("Memulai publikasi…");
-      const ok = await publikasiGitHub();
+      const ok = S.pw ? await publikasiServer() : await publikasiGitHub();
       loading(false);
       if (ok) { setDirty(false); renderAll(); toast("✓ Terpublikasi! Website diperbarui dalam ±1 menit."); }
     } catch (e) {
       loading(false);
+      if (e.status === 401 && S.pw) { toast("Sesi berakhir / password berubah. Silakan masuk lagi.", true); logout(); return; }
       toast("Gagal publikasi: " + e.message, true);
     }
   }
@@ -687,9 +776,14 @@
     f.branch.value = S.conn ? S.conn.branch : "";
     f.token.value = S.conn ? S.conn.token : "";
     const st = $("#connStatus");
-    st.className = "status " + (S.conn ? "status--ok" : "status--off");
-    st.textContent = S.conn ? "Terhubung ke GitHub" : "Belum terhubung";
-    $("#offlineNotice").hidden = !!S.conn;
+    st.className = "status " + (terhubung() ? "status--ok" : "status--off");
+    st.textContent = S.pw ? "Masuk sebagai admin" : S.conn ? "Terhubung ke GitHub" : "Belum terhubung";
+    $("#offlineNotice").hidden = terhubung();
+    $("#serverOn").hidden = !S.server;
+    $("#serverOff").hidden = S.server;
+    $("#logoutBtn").hidden = !S.pw;
+    $("#loginBtn").hidden = !S.server || !!S.pw;
+    $("#tokenBox").hidden = S.server;
   }
   function bindKoneksi() {
     $("#connForm").addEventListener("submit", async (e) => {
@@ -728,6 +822,28 @@
       toast("Koneksi diputus.");
     });
     $("#downloadBtn").addEventListener("click", unduhSemua);
+    $("#logoutBtn").addEventListener("click", () => { if (!S.dirty || confirm("Ada perubahan yang belum dipublikasikan. Tetap keluar?")) { setDirty(false); logout(); } });
+    $("#loginBtn").addEventListener("click", () => tampilLogin(true));
+    $("#loginSkip").addEventListener("click", () => { tampilLogin(false); renderKoneksi(); });
+    $("#loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pw = $("#loginPw").value;
+      if (!pw) return;
+      $("#loginErr").hidden = true;
+      loading("Masuk…");
+      try {
+        await login(pw, $("#loginIngat").checked);
+        loading(false);
+        $("#loginPw").value = "";
+        tampilLogin(false);
+        renderAll(); setDirty(false);
+        toast("✓ Berhasil masuk. Perubahan bisa langsung dipublikasikan.");
+      } catch (err) {
+        loading(false);
+        $("#loginErr").textContent = err.status === 401 ? "Password salah." : "Gagal masuk: " + err.message;
+        $("#loginErr").hidden = false;
+      }
+    });
   }
 
   /* =======================================================================
@@ -757,7 +873,17 @@
   async function init() {
     bindUmum(); bindProdukList(); bindEditor(); bindMobilKategori(); bindToko(); bindKoneksi();
     S.data = normalisasi(clone(window.TOKO_DATA || {}));
-    if (S.conn) {
+    S.server = await cekServer();
+    let pwTersimpan = null;
+    try { pwTersimpan = localStorage.getItem(PW_KEY) || sessionStorage.getItem(PW_KEY); } catch (e) { /* abaikan */ }
+    if (S.server) {
+      if (pwTersimpan) {
+        loading("Memuat data terbaru…");
+        try { await login(pwTersimpan, !!localStorage.getItem(PW_KEY)); } catch (e) { if (e.status !== 401) toast("Gagal memuat: " + e.message, true); }
+        loading(false);
+      }
+      if (!S.pw) tampilLogin(true);
+    } else if (S.conn) {
       loading("Memuat data terbaru dari GitHub…");
       try {
         const { data, sha } = await ambilDariGitHub();

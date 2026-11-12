@@ -21,21 +21,30 @@ Buka `https://<alamat-website-anda>/admin.html` (mis. `https://sparepart-mobil.v
 
 Setelah selesai, klik **Publikasikan**. Vercel memperbarui website dalam ±1 menit.
 
-### Hubungkan ke GitHub (cukup sekali per perangkat)
-Agar tombol **Publikasikan** bisa langsung memperbarui website:
-1. Di GitHub: **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-2. *Repository access* → **Only select repositories** → pilih repo website ini.
-3. *Permissions → Repository permissions* → **Contents: Read and write**.
-4. Generate, salin token.
-5. Di panel admin, tab **Koneksi & Publikasi**: isi repo (`username/nama-repo`), **branch yang dipakai Vercel** (lihat Vercel → Project → Settings → Git → Production Branch), dan token.
+### Atur publikasi otomatis (sekali saja)
+Agar tombol **Publikasikan** langsung memperbarui website tanpa upload manual:
 
-Token hanya disimpan di browser perangkat tersebut, tidak pernah masuk ke repo.
-Tanpa koneksi, gunakan **Unduh data.js & foto baru**, lalu upload manual file tersebut ke folder `data/` dan `images/` di GitHub.
+1. **Buat token GitHub**: GitHub → **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+   - *Repository access*: **Only select repositories**, lalu pilih repo website ini.
+   - *Permissions → Repository permissions*: **Contents: Read and write**.
+   - Generate, lalu salin token.
+2. **Simpan di Vercel**: Project → **Settings → Environment Variables**, tambahkan:
+   - `GITHUB_TOKEN`: token dari langkah 1
+   - `ADMIN_PASSWORD`: password untuk masuk panel admin
+3. Vercel → **Deployments** → ⋯ pada deployment teratas → **Redeploy**.
+
+Selesai. Buka `/admin.html` dari HP atau laptop mana pun, masukkan password, ubah produk, lalu klik **Publikasikan**.
+Token tersimpan aman di Vercel (tidak pernah dikirim ke browser), dan proses publikasi ditangani oleh `api/admin.js`.
+
+> Repo & branch terdeteksi otomatis dari Vercel. Jika perlu, atur manual dengan `GITHUB_REPO` (`username/nama-repo`) dan `GITHUB_BRANCH`.
+
+Alternatif tanpa pengaturan Vercel: masukkan token langsung di tab **Koneksi & Publikasi** (per perangkat), atau gunakan **Unduh data.js & foto baru** lalu upload manual.
 
 ## Struktur
 ```
 index.html        → website toko
 admin.html        → panel admin
+api/admin.js      → fungsi server Vercel untuk login password & publikasi otomatis
 data/data.js      → ⭐ semua data toko, mobil, jenis produk & produk (diubah oleh panel admin)
 images/produk/    → foto produk (diunggah otomatis oleh panel admin)
 images/mobil/     → foto mobil (opsional)
