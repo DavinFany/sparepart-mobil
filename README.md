@@ -1,50 +1,75 @@
-# CarnivalParts — Website Sparepart KIA Carnival
+# Website Toko Sparepart Mobil
 
-Website toko sparepart KIA Carnival berbasis **HTML, CSS, dan JavaScript murni** (tanpa framework, tanpa build). Responsif untuk HP, tablet, dan desktop.
+Website toko sparepart (baru & bekas) untuk **Kia Carnival, Kia Carens 1, dan Chevrolet / Opel Blazer**.
+Dibuat dengan HTML, CSS, dan JavaScript murni, tanpa build, dan responsif untuk HP.
 
-## Fitur
-- Katalog produk dengan pencarian (nama / nomor part / tahun), filter kategori, dan pengurutan harga
-- Detail produk (popup), label diskon, Terlaris, stok menipis / habis
-- Keranjang belanja (tersimpan di browser) dan checkout otomatis ke **WhatsApp**
-- Tombol "Tanya Kecocokan" & "Tanya Inden" via WhatsApp
-- Bagian kategori, keunggulan, cara pesan, FAQ, dan kontak
+- `index.html`: website toko. Pengunjung memilih **mobil**, lalu **jenis produk** (rem, mesin, dll.), dan bisa memfilter kondisi Baru/Bekas.
+- `admin.html`: **panel admin** untuk mengelola semua isi toko lewat formulir, tanpa mengedit kode.
+
+## Mengelola produk lewat Panel Admin
+
+Buka `https://<alamat-website-anda>/admin.html` (mis. `https://sparepart-mobil.vercel.app/admin.html`).
+
+| Yang ingin diubah | Caranya |
+|---|---|
+| Harga & stok | Langsung di daftar produk (tombol − / + untuk stok) |
+| Sembunyikan produk sementara | Matikan tombol **Tampil** |
+| Foto, deskripsi, spesifikasi, berat, Baru/Bekas, mobil, jenis | Klik **Edit** pada produk |
+| Produk baru | **+ Tambah Produk** (atau ⧉ untuk menduplikat produk mirip) |
+| Daftar mobil & jenis produk | Tab **Mobil & Jenis Produk** |
+| Nama toko, WhatsApp, alamat | Tab **Info Toko** |
+
+Setelah selesai, klik **Publikasikan**. Vercel memperbarui website dalam ±1 menit.
+
+### Hubungkan ke GitHub (cukup sekali per perangkat)
+Agar tombol **Publikasikan** bisa langsung memperbarui website:
+1. Di GitHub: **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
+2. *Repository access* → **Only select repositories** → pilih repo website ini.
+3. *Permissions → Repository permissions* → **Contents: Read and write**.
+4. Generate, salin token.
+5. Di panel admin, tab **Koneksi & Publikasi**: isi repo (`username/nama-repo`), **branch yang dipakai Vercel** (lihat Vercel → Project → Settings → Git → Production Branch), dan token.
+
+Token hanya disimpan di browser perangkat tersebut, tidak pernah masuk ke repo.
+Tanpa koneksi, gunakan **Unduh data.js & foto baru**, lalu upload manual file tersebut ke folder `data/` dan `images/` di GitHub.
 
 ## Struktur
 ```
-index.html        → halaman utama
-css/style.css     → tampilan (warna utama di bagian :root)
-js/products.js    → ⭐ DATA TOKO & DAFTAR PRODUK (cukup edit file ini)
-js/app.js         → logika website (tidak perlu diubah)
-images/           → taruh foto produk di sini
+index.html        → website toko
+admin.html        → panel admin
+data/data.js      → ⭐ semua data toko, mobil, jenis produk & produk (diubah oleh panel admin)
+images/produk/    → foto produk (diunggah otomatis oleh panel admin)
+images/mobil/     → foto mobil (opsional)
+css/style.css     → tampilan website (warna utama di :root)
+css/admin.css     → tampilan panel admin
+js/app.js         → logika website
+js/admin.js       → logika panel admin
+js/icons.js       → ikon & ilustrasi mobil
 ```
 
-## Cara mengatur produk
-Buka `js/products.js`.
-
-**Ubah data toko** — nama, nomor WhatsApp (format `62812…` tanpa `+`), alamat, jam buka, dll. di objek `TOKO`.
-
-**Tambah produk** — salin satu blok produk lalu ubah isinya:
-```js
+## Format data produk (jika ingin edit manual `data/data.js`)
+```json
 {
-  id: "KC-021",                 // kode unik
-  nama: "Radiator",
-  kategori: "mesin",            // id dari daftar KATEGORI
-  harga: 2500000,               // angka tanpa titik
-  hargaCoret: 0,                // isi harga lama untuk tampilkan diskon
-  stok: 3,                      // 0 = habis (tombol berubah jadi "Tanya Inden")
-  kondisi: "OEM",               // Original | OEM | Aftermarket | Bekas
-  kodePart: "25310-A9000",
-  tahun: "Carnival YP 2014–2020",
-  gambar: "images/radiator.jpg",// kosongkan "" untuk ikon otomatis
-  unggulan: false,              // true = label "Terlaris"
-  deskripsi: "Penjelasan singkat produk.",
-},
+  "id": "P-0001",
+  "nama": "Kampas Rem Depan",
+  "mobil": ["kia-carnival"],
+  "kategori": "rem",
+  "harga": 850000,
+  "hargaCoret": 975000,
+  "stok": 24,
+  "berat": 1200,
+  "kondisi": "Baru",
+  "kualitas": "Original",
+  "kodePart": "58101-A9A70",
+  "foto": ["images/produk/kampas-rem.jpg"],
+  "deskripsi": "…",
+  "spesifikasi": [{ "label": "Posisi", "nilai": "Depan" }],
+  "unggulan": true,
+  "aktif": true
+}
 ```
-**Hapus produk** — hapus bloknya. **Ubah harga/stok** — edit angkanya.
+`berat` dalam gram · `kondisi`: `Baru` / `Bekas` · `kualitas`: `Original` / `OEM` / `Aftermarket` / kosong · `stok: 0` = habis (tombol berubah jadi "Tanya Inden") · `aktif: false` = disembunyikan.
 
-**Tambah kategori** — tambahkan baris di `KATEGORI`, pilih ikon: `mesin, rem, kaki, kelistrikan, filter, body, interior, oli`.
+## Menjalankan di komputer
+Buka `index.html` atau `admin.html` langsung di browser. Upload semua file ke hosting statis (Vercel, Netlify, GitHub Pages).
 
-## Menjalankan
-Cukup buka `index.html` di browser. Untuk online, upload semua file ke hosting statis apa pun (GitHub Pages, Netlify, Vercel, cPanel).
-
-> Ganti nomor WhatsApp contoh (`6281234567890`) dengan nomor toko Anda sebelum dipublikasikan.
+> Data toko & produk saat ini masih **contoh**. Ganti nomor WhatsApp, alamat, dan produk lewat panel admin.

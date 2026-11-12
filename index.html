@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CarnivalParts — Sparepart KIA Carnival</title>
-  <meta name="description" content="Toko sparepart KIA Carnival: original, OEM, dan aftermarket. Kirim ke seluruh Indonesia, pesan mudah via WhatsApp." />
+  <title>SparepartMobil — Sparepart Kia &amp; Chevrolet / Opel</title>
+  <meta name="description" content="Toko sparepart mobil baru &amp; bekas untuk Kia Carnival, Kia Carens, dan Chevrolet / Opel Blazer. Kirim ke seluruh Indonesia, pesan mudah via WhatsApp." />
   <meta name="theme-color" content="#0f1720" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,12 +20,12 @@
         <span class="logo__mark">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.2 2.6 3.4-.5.5 3.4L20.7 9.7 19.4 12.9l1.3 3.2-2.6 2.2-.5 3.4-3.4-.5L12 23.8 9.8 21.2l-3.4.5-.5-3.4-2.6-2.2 1.3-3.2L3.3 9.7l2.6-2.2.5-3.4 3.4.5z" fill="currentColor"/><circle cx="12" cy="12.9" r="3.6" fill="#0f1720"/></svg>
         </span>
-        <span class="logo__text" data-toko="nama">CarnivalParts</span>
+        <span class="logo__text" data-toko="nama"></span>
       </a>
 
       <nav class="nav" id="nav" aria-label="Navigasi utama">
         <a href="#produk">Produk</a>
-        <a href="#kategori">Kategori</a>
+        <a href="#mobil">Pilih Mobil</a>
         <a href="#keunggulan">Kenapa Kami</a>
         <a href="#faq">FAQ</a>
         <a href="#kontak">Kontak</a>
@@ -48,19 +48,19 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__content">
-          <span class="eyebrow">Spesialis KIA Carnival</span>
+          <span class="eyebrow" data-toko="tagline"></span>
           <h1>Sparepart tepat, <span class="accent">perjalanan</span> keluarga tetap nyaman.</h1>
-          <p class="hero__lead">Original, OEM, dan aftermarket berkualitas untuk Carnival generasi YP hingga KA4. Cek kecocokan part gratis lewat WhatsApp sebelum membeli.</p>
+          <p class="hero__lead">Part baru dan bekas berkualitas — original, OEM, hingga aftermarket — untuk <span id="heroCars">mobil Anda</span>. Cek kecocokan part gratis lewat WhatsApp sebelum membeli.</p>
           <div class="hero__cta">
             <a href="#produk" class="btn btn--primary">Lihat Katalog</a>
-            <a href="#" class="btn btn--ghost" data-wa="Halo, saya mau tanya kecocokan sparepart untuk KIA Carnival saya.">
+            <a href="#" class="btn btn--ghost" data-wa="Halo, saya mau tanya kecocokan sparepart untuk mobil saya.">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.2 2.2 2.2 0 00.1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
               Konsultasi Gratis
             </a>
           </div>
           <ul class="hero__stats">
             <li><strong id="statProduk">20+</strong><span>Jenis part</span></li>
-            <li><strong>100%</strong><span>Garansi cocok</span></li>
+            <li><strong id="statMobil">3</strong><span>Model mobil</span></li>
             <li><strong>34</strong><span>Provinsi terkirim</span></li>
           </ul>
         </div>
@@ -116,14 +116,15 @@
       </div>
     </section>
 
-    <!-- ============ KATEGORI ============ -->
-    <section class="section" id="kategori">
+    <!-- ============ PILIH MOBIL ============ -->
+    <section class="section" id="mobil">
       <div class="container">
         <div class="section__head">
-          <span class="eyebrow">Belanja per kategori</span>
-          <h2>Temukan part sesuai kebutuhan</h2>
+          <span class="eyebrow">Langkah 1</span>
+          <h2>Pilih mobil Anda</h2>
+          <p class="section__sub">Tampilkan hanya sparepart yang cocok untuk mobil Anda.</p>
         </div>
-        <div class="cat-grid" id="catGrid"></div>
+        <div class="car-grid" id="carGrid"></div>
       </div>
     </section>
 
@@ -133,7 +134,7 @@
         <div class="section__head section__head--row">
           <div>
             <span class="eyebrow">Katalog</span>
-            <h2>Sparepart KIA Carnival</h2>
+            <h2 id="catalogTitle">Semua sparepart</h2>
           </div>
           <p class="result-info" id="resultInfo"></p>
         </div>
@@ -151,7 +152,22 @@
           </select>
         </div>
 
-        <div class="chips" id="filterChips" role="tablist" aria-label="Filter kategori"></div>
+        <div class="filter-block">
+          <span class="filter-label">Mobil</span>
+          <div class="car-tabs" id="carTabs" role="tablist" aria-label="Filter mobil"></div>
+        </div>
+        <div class="filter-block">
+          <span class="filter-label">Jenis produk</span>
+          <div class="chips" id="filterChips" role="tablist" aria-label="Filter jenis produk"></div>
+        </div>
+        <div class="filter-block filter-block--inline">
+          <span class="filter-label">Kondisi</span>
+          <div class="seg" id="kondisiSeg">
+            <button class="seg__btn is-active" data-kondisi="semua">Semua</button>
+            <button class="seg__btn" data-kondisi="Baru">Baru</button>
+            <button class="seg__btn" data-kondisi="Bekas">Bekas</button>
+          </div>
+        </div>
 
         <div class="product-grid" id="productGrid"></div>
 
@@ -159,7 +175,7 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4-4M8.5 11h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           <h3>Part tidak ditemukan</h3>
           <p>Belum ada di katalog? Kami bisa bantu carikan.</p>
-          <a href="#" class="btn btn--primary" data-wa="Halo, saya mencari sparepart KIA Carnival yang tidak ada di katalog:">Tanya via WhatsApp</a>
+          <a href="#" class="btn btn--primary" data-wa="Halo, saya mencari sparepart yang tidak ada di katalog:">Tanya via WhatsApp</a>
         </div>
       </div>
     </section>
@@ -169,12 +185,12 @@
       <div class="container">
         <div class="section__head">
           <span class="eyebrow">Kenapa belanja di sini</span>
-          <h2>Fokus pada satu mobil, jadi paham betul</h2>
+          <h2>Spesialis beberapa model, jadi paham betul</h2>
         </div>
         <div class="features">
           <article class="feature">
             <span class="feature__num">01</span>
-            <h3>Hanya Carnival</h3>
+            <h3>Fokus pada model tertentu</h3>
             <p>Kami tidak menjual part untuk semua mobil. Fokus kami membuat stok lebih lengkap dan rekomendasi lebih akurat.</p>
           </article>
           <article class="feature">
@@ -184,8 +200,8 @@
           </article>
           <article class="feature">
             <span class="feature__num">03</span>
-            <h3>Pilihan Sesuai Budget</h3>
-            <p>Tersedia part original, OEM, hingga aftermarket berkualitas. Kami jelaskan perbedaannya secara jujur.</p>
+            <h3>Baru & Bekas</h3>
+            <p>Tersedia part baru (original, OEM, aftermarket) dan part bekas/copotan yang sudah dicek. Kondisi dijelaskan jujur.</p>
           </article>
           <article class="feature">
             <span class="feature__num">04</span>
@@ -224,6 +240,10 @@
             <p><strong>Original</strong> adalah part resmi berlogo pabrikan. <strong>OEM</strong> dibuat oleh pabrik pemasok yang sama namun tanpa logo pabrikan, kualitas setara dengan harga lebih hemat. <strong>Aftermarket</strong> diproduksi merek lain dengan spesifikasi yang sesuai.</p>
           </details>
           <details>
+            <summary>Apakah part bekas bergaransi?</summary>
+            <p>Part bekas (copotan) sudah kami cek fungsinya sebelum dijual. Lama garansi tertera di spesifikasi masing-masing produk.</p>
+          </details>
+          <details>
             <summary>Bagaimana memastikan part cocok dengan mobil saya?</summary>
             <p>Kirimkan nomor rangka (VIN) atau foto STNK lewat WhatsApp. Kami cek nomor part yang sesuai sebelum barang dikirim.</p>
           </details>
@@ -237,7 +257,7 @@
           </details>
           <details>
             <summary>Apakah melayani pemasangan?</summary>
-            <p>Untuk area Jabodetabek kami dapat merekomendasikan bengkel rekanan spesialis Carnival. Hubungi admin untuk info lebih lanjut.</p>
+            <p>Untuk area Jabodetabek kami dapat merekomendasikan bengkel rekanan. Hubungi admin untuk info lebih lanjut.</p>
           </details>
         </div>
       </div>
@@ -261,7 +281,7 @@
           <div class="contact__card">
             <h3>Chat dengan admin</h3>
             <p>Respon rata-rata di bawah 10 menit pada jam kerja.</p>
-            <a href="#" class="btn btn--wa btn--block" data-wa="Halo, saya ingin bertanya tentang sparepart KIA Carnival.">
+            <a href="#" class="btn btn--wa btn--block" data-wa="Halo, saya ingin bertanya tentang sparepart mobil.">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.2 2.2 2.2 0 00.1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
               Chat WhatsApp
             </a>
@@ -291,12 +311,12 @@
     </div>
     <div class="container footer__bottom">
       <p>© <span id="year"></span> <span data-toko="nama"></span>. Semua hak dilindungi.</p>
-      <p class="footer__note">KIA dan Carnival adalah merek dagang milik pemiliknya masing-masing. Toko ini bukan dealer resmi.</p>
+      <p class="footer__note">Kia, Chevrolet, Opel, dan nama model mobil adalah merek dagang milik pemiliknya masing-masing. Toko ini bukan dealer resmi.</p>
     </div>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a href="#" class="wa-float" data-wa="Halo, saya ingin bertanya tentang sparepart KIA Carnival." aria-label="Chat WhatsApp">
+  <a href="#" class="wa-float" data-wa="Halo, saya ingin bertanya tentang sparepart mobil." aria-label="Chat WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.2 2.2 2.2 0 00.1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
   </a>
 
@@ -312,7 +332,7 @@
     <div class="drawer__body" id="cartItems"></div>
     <div class="drawer__foot" id="cartFoot">
       <div class="cart-total"><span>Subtotal</span><strong id="cartTotal">Rp0</strong></div>
-      <p class="cart-note">Ongkos kirim dihitung admin setelah pesanan dikirim.</p>
+      <p class="cart-note">Perkiraan berat: <strong id="cartWeight">-</strong>. Ongkos kirim dihitung admin setelah pesanan dikirim.</p>
       <button class="btn btn--wa btn--block" id="checkoutBtn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.7 11.8 11.8 0 004.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 001.8-1.2 2.2 2.2 0 00.1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
         Pesan via WhatsApp
@@ -332,7 +352,8 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/products.js"></script>
+  <script src="data/data.js"></script>
+  <script src="js/icons.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

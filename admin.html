@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Panel Admin Toko</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">
+        <span class="brand__mark"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2l2.2 2.6 3.4-.5.5 3.4L20.7 9.7 19.4 12.9l1.3 3.2-2.6 2.2-.5 3.4-3.4-.5L12 23.8 9.8 21.2l-3.4.5-.5-3.4-2.6-2.2 1.3-3.2L3.3 9.7l2.6-2.2.5-3.4 3.4.5z" fill="#fff"/><circle cx="12" cy="12.9" r="3.6" fill="#d93a2f"/></svg></span>
+        <div>
+          <strong>Panel Admin</strong>
+          <span id="brandToko"></span>
+        </div>
+      </div>
+      <div class="topbar__actions">
+        <span class="status" id="connStatus"></span>
+        <a href="./" target="_blank" class="btn btn--ghost btn--sm">Lihat Website ↗</a>
+        <button class="btn btn--primary" id="publishBtn" disabled>Publikasikan</button>
+      </div>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button class="tab is-active" data-tab="produk">Produk</button>
+      <button class="tab" data-tab="mobil">Mobil &amp; Jenis Produk</button>
+      <button class="tab" data-tab="toko">Info Toko</button>
+      <button class="tab" data-tab="koneksi">Koneksi &amp; Publikasi</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="notice" id="dirtyNotice" hidden>
+      <strong>Ada perubahan yang belum dipublikasikan.</strong>
+      <span>Klik <b>Publikasikan</b> agar perubahan tampil di website.</span>
+    </div>
+    <div class="notice notice--warn" id="offlineNotice" hidden>
+      <strong>Mode tanpa koneksi.</strong>
+      <span>Perubahan tidak bisa langsung tampil di website. Hubungkan ke GitHub di tab <a href="#" data-goto="koneksi">Koneksi &amp; Publikasi</a> (cukup sekali), atau unduh file lalu upload manual.</span>
+    </div>
+
+    <!-- ===== PRODUK ===== -->
+    <section class="panel is-active" id="panel-produk">
+      <div class="toolbar">
+        <input type="search" id="qProduk" class="input" placeholder="Cari produk…" />
+        <select id="fMobil" class="input"></select>
+        <select id="fKategori" class="input"></select>
+        <button class="btn btn--primary" id="addProduk">+ Tambah Produk</button>
+      </div>
+      <p class="hint">Harga dan stok bisa diubah langsung di daftar ini. Klik <b>Edit</b> untuk mengubah foto, spesifikasi, deskripsi, berat, dan lainnya.</p>
+      <div class="plist" id="plist"></div>
+    </section>
+
+    <!-- ===== MOBIL & KATEGORI ===== -->
+    <section class="panel" id="panel-mobil">
+      <div class="grid2">
+        <div class="box">
+          <div class="box__head">
+            <div><h2>Daftar Mobil</h2><p class="hint">Kategori utama di website. Urutan di sini = urutan di website.</p></div>
+            <button class="btn btn--outline btn--sm" id="addMobil">+ Tambah Mobil</button>
+          </div>
+          <div id="mobilList" class="rows"></div>
+        </div>
+        <div class="box">
+          <div class="box__head">
+            <div><h2>Jenis Produk</h2><p class="hint">Sub-kategori di dalam setiap mobil (rem, mesin, dll).</p></div>
+            <button class="btn btn--outline btn--sm" id="addKategori">+ Tambah Jenis</button>
+          </div>
+          <div id="kategoriList" class="rows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TOKO ===== -->
+    <section class="panel" id="panel-toko">
+      <div class="box box--narrow">
+        <h2>Informasi Toko</h2>
+        <form id="tokoForm" class="form"></form>
+      </div>
+    </section>
+
+    <!-- ===== KONEKSI ===== -->
+    <section class="panel" id="panel-koneksi">
+      <div class="grid2">
+        <div class="box">
+          <h2>Hubungkan ke GitHub</h2>
+          <p class="hint">Dengan terhubung, tombol <b>Publikasikan</b> langsung memperbarui website (Vercel memperbarui otomatis dalam ±1 menit). Data koneksi hanya disimpan di browser ini.</p>
+          <form id="connForm" class="form">
+            <label class="field"><span>Repository GitHub</span>
+              <input class="input" name="repo" placeholder="username/nama-repo" required />
+              <small>Contoh: <code>namaanda/sparepart-mobil</code></small>
+            </label>
+            <label class="field"><span>Branch</span>
+              <input class="input" name="branch" placeholder="main" required />
+              <small>Branch yang dipakai Vercel untuk website utama (Settings → Git di Vercel).</small>
+            </label>
+            <label class="field"><span>Token akses GitHub</span>
+              <input class="input" name="token" type="password" placeholder="github_pat_…" autocomplete="off" required />
+            </label>
+            <div class="form__actions">
+              <button class="btn btn--primary" type="submit">Simpan &amp; Hubungkan</button>
+              <button class="btn btn--outline" type="button" id="disconnectBtn">Putuskan</button>
+            </div>
+          </form>
+        </div>
+        <div class="box">
+          <h2>Cara membuat token (sekali saja)</h2>
+          <ol class="steps">
+            <li>Login ke GitHub, buka <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b>.</li>
+            <li>Klik <b>Generate new token</b>. Beri nama, mis. "Admin Toko", dan atur masa berlaku.</li>
+            <li>Di <b>Repository access</b>, pilih <b>Only select repositories</b> lalu pilih repo website ini.</li>
+            <li>Di <b>Permissions → Repository permissions</b>, ubah <b>Contents</b> menjadi <b>Read and write</b>.</li>
+            <li>Klik <b>Generate token</b>, salin token, lalu tempel di form sebelah.</li>
+          </ol>
+          <p class="hint">Jangan bagikan token kepada siapa pun. Jika HP/laptop hilang, hapus token di GitHub.</p>
+          <hr />
+          <h2>Tanpa koneksi / cadangan</h2>
+          <p class="hint">Unduh <code>data.js</code> beserta foto baru, lalu upload manual ke folder <code>data/</code> dan <code>images/</code> di GitHub.</p>
+          <div class="form__actions">
+            <button class="btn btn--outline" id="downloadBtn">Unduh data.js &amp; foto baru</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== EDITOR PRODUK ===== -->
+  <div class="sheet" id="editor" hidden>
+    <div class="sheet__box">
+      <div class="sheet__head">
+        <h2 id="editorTitle">Edit Produk</h2>
+        <button class="icon-btn" data-close-editor aria-label="Tutup">✕</button>
+      </div>
+      <form id="editorForm" class="sheet__body form" novalidate></form>
+      <div class="sheet__foot">
+        <button class="btn btn--danger-ghost" id="deleteProduk" type="button">Hapus produk</button>
+        <span class="spacer"></span>
+        <button class="btn btn--outline" type="button" data-close-editor>Batal</button>
+        <button class="btn btn--primary" type="submit" form="editorForm">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading" hidden><div class="loading__box"><span class="spinner"></span><p id="loadingText">Memuat…</p></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data/data.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
