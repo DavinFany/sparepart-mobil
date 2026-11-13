@@ -24,7 +24,7 @@ window.TOKO_DATA = {
       "nama": "Carnival",
       "keterangan": "Generasi Tahun 2000an",
       "bentuk": "mpv",
-      "foto": ""
+      "foto": "images/mobil/kia-carnival-mwf21wavufas.jpg"
     },
     {
       "id": "kia-carens-1",
@@ -32,7 +32,7 @@ window.TOKO_DATA = {
       "nama": "Carens 1",
       "keterangan": "Generasi pertama (2000–2006)",
       "bentuk": "compact",
-      "foto": ""
+      "foto": "images/mobil/kia-carens-1-mwf20tt4ql51.jpg"
     },
     {
       "id": "chevrolet-opel-blazer",
@@ -40,7 +40,7 @@ window.TOKO_DATA = {
       "nama": "Blazer",
       "keterangan": "Opel Blazer & Chevrolet Blazer",
       "bentuk": "suv",
-      "foto": ""
+      "foto": "images/mobil/chevrolet-opel-blazer-mwf21g81x4er.jpg"
     }
   ],
   "kategori": [
