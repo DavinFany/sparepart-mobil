@@ -316,6 +316,7 @@ p { margin: 0 0 1em; }
 .contact__card { padding: 32px; border-radius: 20px; background: #fff; box-shadow: var(--shadow); display: grid; gap: 12px; }
 .contact__card h3 { margin: 0; font-size: 22px; }
 .contact__card p { color: var(--c-muted); margin: 0 0 8px; }
+.contact__note { font-size: 14px; }
 
 /* ---------- Footer ---------- */
 .footer { background: var(--c-ink); color: #8794a1; padding: 56px 0 28px; font-size: 14px; }

@@ -822,7 +822,8 @@
     ["telepon", "Telepon (ditampilkan)", "0812-3456-7890"],
     ["email", "Email", "halo@tokoanda.id"],
     ["alamat", "Alamat", "Jl. …"],
-    ["jamBuka", "Jam buka", "Senin – Sabtu, 08.00 – 17.00 WIB"],
+    ["jamBuka", "Jam buka", "Senin – Sabtu, 08.00 – 16.00 WIB (Minggu libur)"],
+    ["catatanChat", "Catatan balasan chat", "Chat di luar jam kerja akan kami balas pada jam kerja berikutnya.", "Ditampilkan di kotak \"Chat dengan admin\". Kosongkan jika tidak perlu."],
     ["instagram", "Link Instagram", "https://instagram.com/…"],
     ["mapsUrl", "Link Google Maps", "https://maps.app.goo.gl/…"],
   ];

@@ -8,13 +8,14 @@ window.TOKO_DATA = {
   "toko": {
     "nama": "Fandiz Tehnik",
     "tagline": "Sparepart Mobil Baru & Bekas",
-    "whatsapp": "6282136788171",
-    "telepon": "0821-3678-8171",
+    "whatsapp": "6282226771297",
+    "telepon": "0822-2677-1297",
     "email": "",
     "alamat": "Jl. Raya Paninggaran, Besuki, Sawangan, Kec. Paninggaran, Kabupaten Pekalongan, Jawa Tengah 51164",
-    "jamBuka": "Senin – Sabtu, 08.00 – 17.00 WIB",
+    "jamBuka": "Senin – Sabtu, 08.00 – 16.00 WIB (Minggu libur)",
     "instagram": "",
-    "mapsUrl": "https://maps.app.goo.gl/MenUoGBjtDR3DMLu5?g_st=ic"
+    "mapsUrl": "https://maps.app.goo.gl/MenUoGBjtDR3DMLu5?g_st=ic",
+    "catatanChat": "Chat di luar jam kerja akan kami balas pada jam kerja berikutnya (keesokan harinya)."
   },
   "mobil": [
     {
