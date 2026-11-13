@@ -98,7 +98,10 @@ select.input { appearance: none; -webkit-appearance: none; padding-right: 34px; 
 .switch input:checked::after { transform: translateX(16px); }
 
 /* Product list */
-.toolbar { display: grid; grid-template-columns: 1fr 200px 180px auto; gap: 10px; margin-bottom: 10px; }
+.toolbar { display: grid; grid-template-columns: 1fr 190px 170px 210px auto; gap: 10px; margin-bottom: 10px; }
+.pill.pill--habis { background: var(--c-primary); color: #fff; }
+.pill.pill--warn { background: #fff3e0; color: #a35a00; }
+.prow.is-out { border-left: 4px solid var(--c-primary); }
 .plist { display: grid; gap: 8px; }
 .prow { display: grid; grid-template-columns: 56px minmax(0, 1fr) 140px 140px 100px auto; gap: 14px; align-items: center; background: #fff; border: 1px solid var(--c-line); border-radius: 12px; padding: 10px 12px; }
 .prow.is-hidden { opacity: .55; }
@@ -206,6 +209,7 @@ select.input { appearance: none; -webkit-appearance: none; padding-right: 34px; 
   .toolbar { grid-template-columns: 1fr 1fr; }
   .toolbar #qProduk { grid-column: 1 / -1; }
   .toolbar #addProduk { grid-column: 1 / -1; }
+  .toolbar #fStok { grid-column: 1 / -1; }
   .prow { grid-template-columns: 56px minmax(0, 1fr) auto; grid-template-areas: "t n a" "p p p"; row-gap: 10px; }
   .prow__thumb { grid-area: t; }
   .prow__info { grid-area: n; }

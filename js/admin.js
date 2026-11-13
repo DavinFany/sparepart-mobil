@@ -60,6 +60,7 @@
   }
   function setDirty(v = true) {
     S.dirty = v;
+    if (S.data && $("#fStok").options.length) renderFilterStok();
     const nPhotos = Object.keys(S.pending).length;
     $("#publishBtn").disabled = !v;
     $("#publishBtn").textContent = v ? `Publikasikan${nPhotos ? ` (+${nPhotos} foto)` : ""}` : "Tersimpan ✓";
@@ -313,33 +314,50 @@
   /* =======================================================================
      PRODUK — daftar
      ======================================================================= */
-  const filt = { q: "", mobil: "semua", kategori: "semua" };
+  const filt = { q: "", mobil: "semua", kategori: "semua", stok: "semua" };
+  const stokTotal = (p) => (p.variasi.length ? p.variasi.reduce((t, v) => t + v.stok, 0) : p.stok);
+  const varHabis = (p) => p.variasi.length > 0 && stokTotal(p) > 0 && p.variasi.some((v) => v.stok <= 0);
+  const FILTER_STOK = [
+    ["semua", "Semua stok", () => true],
+    ["habis", "🔴 Stok habis (0)", (p) => stokTotal(p) <= 0],
+    ["var-habis", "🟠 Ada variasi habis", varHabis],
+    ["menipis", "🟡 Stok menipis (1–5)", (p) => stokTotal(p) > 0 && stokTotal(p) <= 5],
+    ["tersedia", "🟢 Stok tersedia", (p) => stokTotal(p) > 0],
+  ];
+  function renderFilterStok() {
+    $("#fStok").innerHTML = FILTER_STOK.map(([id, label, fn]) => `<option value="${id}">${label}${id === "semua" ? "" : ` — ${S.data.produk.filter(fn).length}`}</option>`).join("");
+    $("#fStok").value = filt.stok;
+  }
 
   function renderFilterProduk() {
     $("#fMobil").innerHTML = `<option value="semua">Semua mobil</option><option value="_none">⚠ Belum ada mobil</option>` + S.data.mobil.map((m) => `<option value="${esc(m.id)}">${esc(namaMobil(m))}</option>`).join("");
     $("#fKategori").innerHTML = `<option value="semua">Semua jenis</option>` + S.data.kategori.map((k) => `<option value="${esc(k.id)}">${esc(k.nama)}</option>`).join("");
     $("#fMobil").value = filt.mobil === "_none" || S.data.mobil.some((m) => m.id === filt.mobil) ? filt.mobil : "semua";
     $("#fKategori").value = S.data.kategori.some((k) => k.id === filt.kategori) ? filt.kategori : "semua";
+    renderFilterStok();
   }
 
   function renderProduk() {
     const q = filt.q.trim().toLowerCase();
     const list = S.data.produk
       .map((p, i) => ({ p, i }))
-      .filter(({ p }) => (filt.mobil === "semua" || (filt.mobil === "_none" ? !p.mobil.some((id) => S.data.mobil.some((m) => m.id === id)) : p.mobil.includes(filt.mobil))) && (filt.kategori === "semua" || p.kategori === filt.kategori) && (!q || `${p.nama} ${p.kodePart} ${p.id}`.toLowerCase().includes(q)));
+      .filter(({ p }) => (filt.mobil === "semua" || (filt.mobil === "_none" ? !p.mobil.some((id) => S.data.mobil.some((m) => m.id === id)) : p.mobil.includes(filt.mobil))) && (filt.kategori === "semua" || p.kategori === filt.kategori) && FILTER_STOK.find(([id]) => id === filt.stok)[2](p) && (!q || `${p.nama} ${p.kodePart} ${p.id}`.toLowerCase().includes(q)));
+    $("#pCount").textContent = `${list.length} dari ${S.data.produk.length} produk`;
     if (!list.length) {
-      $("#plist").innerHTML = `<div class="empty">Belum ada produk${q || filt.mobil !== "semua" || filt.kategori !== "semua" ? " yang cocok dengan filter" : ""}.</div>`;
+      $("#plist").innerHTML = `<div class="empty">Belum ada produk${q || filt.mobil !== "semua" || filt.kategori !== "semua" || filt.stok !== "semua" ? " yang cocok dengan filter" : ""}.</div>`;
       return;
     }
     $("#plist").innerHTML = list.map(({ p, i }) => {
       const kat = S.data.kategori.find((k) => k.id === p.kategori);
       const mobil = p.mobil.map((id) => namaMobil(S.data.mobil.find((m) => m.id === id))).filter(Boolean).join(", ") || "⚠ belum pilih mobil";
-      return `<div class="prow${p.aktif ? "" : " is-hidden"}" data-i="${i}">
+      const st = stokTotal(p);
+      return `<div class="prow${p.aktif ? "" : " is-hidden"}${st <= 0 ? " is-out" : ""}" data-i="${i}">
         <div class="prow__thumb">${p.foto[0] ? `<img referrerpolicy="no-referrer" src="${esc(imgSrc(p.foto[0]))}" alt="">` : ikonKat(p.kategori)}</div>
         <div class="prow__info">
           <div class="prow__name">${esc(p.nama || "(tanpa nama)")}</div>
           <div class="prow__meta">
             <span class="pill ${p.kondisi === "Bekas" ? "pill--bekas" : "pill--baru"}">${p.kondisi}</span>
+            ${st <= 0 ? '<span class="pill pill--habis">Stok habis</span>' : varHabis(p) ? '<span class="pill pill--warn">Ada variasi habis</span>' : st <= 5 ? '<span class="pill pill--warn">Stok menipis</span>' : ""}
             <span>${esc(kat ? kat.nama : "-")}</span><span>·</span><span>${esc(mobil)}</span>
             <span>·</span><span>${window.formatBerat(p.berat)}</span><span>·</span><span>${p.foto.length} foto</span>
           </div>
@@ -924,6 +942,7 @@
     $("#qProduk").addEventListener("input", (e) => { filt.q = e.target.value; renderProduk(); });
     $("#fMobil").addEventListener("change", (e) => { filt.mobil = e.target.value; renderProduk(); });
     $("#fKategori").addEventListener("change", (e) => { filt.kategori = e.target.value; renderProduk(); });
+    $("#fStok").addEventListener("change", (e) => { filt.stok = e.target.value; renderProduk(); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#editor").hidden) tutupEditor(); });
     window.addEventListener("beforeunload", (e) => { if (S.dirty) { e.preventDefault(); e.returnValue = ""; } });
   }
