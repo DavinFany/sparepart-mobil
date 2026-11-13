@@ -487,6 +487,8 @@ p { margin: 0 0 1em; }
   .card__foot { flex-direction: column; align-items: flex-start; gap: 0; }
 }
 
+.pd__note { margin: 0; font-size: 13px; color: var(--c-muted); text-align: center; }
+
 /* Variasi produk */
 .price small { font-size: 12px; font-weight: 600; color: var(--c-muted); }
 .card__var { font-size: 12px; font-weight: 600; color: var(--c-ink); }

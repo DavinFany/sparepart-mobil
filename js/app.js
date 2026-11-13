@@ -258,6 +258,7 @@
         <div class="pd__actions">
           ${habis ? "" : `<button class="btn btn--primary btn--block" id="pdAdd" ${p.variasi.length ? "disabled" : ""} data-add="${esc(p.id)}">${ikonCart}<span>${p.variasi.length ? "Pilih variasi dulu" : "Tambah ke Keranjang"}</span></button>`}
           <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${waLink(`Halo, saya tertarik dengan:\n*${p.nama}* (${p.kondisi || "Baru"})\nKode: ${p.id}${p.kodePart ? `\nNo. part: ${p.kodePart}` : ""}\nHarga: ${rupiah(p.harga)}\n\nApakah cocok untuk mobil saya?`)}">${ikonWA}Tanya Kecocokan</a>
+          <p class="pd__note">Komplain hanya diterima 2x24 jam setelah barang diterima.</p>
           ${p.linkShopee ? `<a class="btn btn--outline btn--block" target="_blank" rel="noopener" href="${esc(p.linkShopee)}">Lihat / beli di Shopee ↗</a>` : ""}
         </div>
       </div>
