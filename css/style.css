@@ -105,9 +105,9 @@ p { margin: 0 0 1em; }
 .logo__mark svg { width: 24px; height: 24px; }
 .logo--light { color: #fff; }
 
-.nav { display: flex; gap: 6px; }
-.nav a { padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 15px; color: var(--c-text); transition: background .2s, color .2s; }
-.nav a:hover { background: var(--c-bg-alt); color: var(--c-ink); }
+.nav { display: flex; gap: 8px; }
+.nav a { padding: 8px 16px; border-radius: 999px; font-weight: 600; font-size: 15px; color: #fff; background: var(--c-primary); transition: background .2s, transform .15s; }
+.nav a:hover { background: var(--c-primary-dark); color: #fff; }
 
 .badge {
   position: absolute; top: 4px; right: 2px; min-width: 19px; height: 19px; padding: 0 5px;
@@ -515,7 +515,7 @@ p { margin: 0 0 1em; }
   .menu-btn { display: inline-flex; align-items: center; justify-content: center; }
   .nav {
     position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 49;
-    flex-direction: column; gap: 0; padding: 8px 16px 16px;
+    flex-direction: column; gap: 8px; padding: 12px 16px 16px;
     background: #fff; border-bottom: 1px solid var(--c-line); box-shadow: var(--shadow);
     transform: translateY(-8px); opacity: 0; visibility: hidden;
     transition: transform .25s, opacity .2s, visibility .2s;
