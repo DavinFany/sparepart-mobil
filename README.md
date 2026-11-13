@@ -45,6 +45,8 @@ Alternatif tanpa pengaturan Vercel: masukkan token langsung di tab **Koneksi & P
 index.html        → website toko
 admin.html        → panel admin
 api/admin.js      → fungsi server Vercel untuk login password & publikasi otomatis
+api/foto.js       → halaman foto produk (/foto/ID) untuk link di chat WhatsApp
+vercel.json       → mengarahkan /foto/ID ke api/foto.js
 data/data.js      → ⭐ semua data toko, mobil, jenis produk & produk (diubah oleh panel admin)
 images/produk/    → foto produk (diunggah otomatis oleh panel admin)
 images/mobil/     → foto mobil (opsional)

@@ -32,11 +32,12 @@
   const namaMobil = (m) => (m ? `${m.merk} ${m.nama}` : "");
   const mobilProduk = (p) => (Array.isArray(p.mobil) ? p.mobil : [p.mobil]).filter(Boolean);
   const fotoProduk = (p) => (Array.isArray(p.foto) ? p.foto : p.foto ? [p.foto] : []).filter(Boolean);
-  // Link foto utama produk (alamat lengkap, agar bisa dibuka dari chat WhatsApp)
-  const linkFoto = (p) => {
-    const f = fotoProduk(p)[0];
-    if (!f) return "";
-    try { return new URL(f, location.href).href; } catch (e) { return ""; }
+  // Link foto produk untuk chat WhatsApp: halaman /foto/ID di website ini
+  // (menampilkan foto besar + pratinjau gambar di WhatsApp)
+  const linkFoto = (p, vi) => {
+    if (!fotoProduk(p).length) return "";
+    if (/^https?:$/.test(location.protocol)) return `${location.origin}/foto/${encodeURIComponent(p.id)}${vi !== undefined && vi !== "" ? `?v=${vi}` : ""}`;
+    try { return new URL(fotoProduk(p)[0], location.href).href; } catch (e) { return ""; }
   };
   const waLink = (text) => `https://wa.me/${TOKO.whatsapp}?text=${encodeURIComponent(text)}`;
 
@@ -378,7 +379,7 @@
     if (!ids.length) return;
     const baris = ids.map((id, i) => {
       const it = itemCart(id), p = it.p;
-      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}${linkFoto(p) ? `\n   Foto: ${linkFoto(p)}` : ""}`;
+      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}${linkFoto(p, String(id).split("::")[1]) ? `\n   Foto: ${linkFoto(p, String(id).split("::")[1])}` : ""}`;
     });
     const pesan = `Halo ${TOKO.nama}, saya ingin memesan:\n\n${baris.join("\n\n")}\n\n*Subtotal: ${rupiah(total)}*\nPerkiraan berat: ${window.formatBerat(berat)}\n\nNama:\nAlamat kirim:\nMobil & tahun:\n\nMohon info total dengan ongkir. Terima kasih.`;
     window.open(waLink(pesan), "_blank", "noopener");
