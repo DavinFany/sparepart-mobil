@@ -1398,7 +1398,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0044",
       "nama": "Housing Karbon Brush Dinamo Starter",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "kelistrikan",
       "harga": 250000,
       "hargaCoret": 0,
@@ -1792,7 +1794,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0058",
       "nama": "Seal debu piston, Seal dalam piston, Dan karet dudukan kaliper",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "rem",
       "harga": 220000,
       "hargaCoret": 0,
@@ -2029,7 +2033,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0067",
       "nama": "- boot as roda dalam kanan & kiri - seal as roda kanan - support shock kanan & kiri - shock depan kanan & kiri - seal cover valve - kopling set - fly whell - kabel rem tangan kanan & kiri",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "kaki-kaki",
       "harga": 4400000,
       "hargaCoret": 0,
@@ -2887,7 +2893,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0096",
       "nama": "Klem selang tabung minyak pompa PS",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "kaki-kaki",
       "harga": 12000,
       "hargaCoret": 0,
@@ -2921,7 +2929,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0097",
       "nama": "Breaket Nozzle",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "mesin",
       "harga": 75000,
       "hargaCoret": 0,
@@ -2980,7 +2990,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0099",
       "nama": "Sensor input speed kia/hyundai",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "transmisi",
       "harga": 180000,
       "hargaCoret": 0,
@@ -3684,7 +3696,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0124",
       "nama": "Sproket gear timing belt",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "mesin",
       "harga": 180000,
       "hargaCoret": 0,
@@ -4159,7 +4173,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0138",
       "nama": "sensor output speed kia/hyundai",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "transmisi",
       "harga": 250000,
       "hargaCoret": 0,
@@ -5622,7 +5638,9 @@ window.TOKO_DATA = {
     {
       "id": "P-0186",
       "nama": "Support Shockbreaker",
-      "mobil": [],
+      "mobil": [
+        "kia-carnival"
+      ],
       "kategori": "kaki-kaki",
       "harga": 200000,
       "hargaCoret": 0,
