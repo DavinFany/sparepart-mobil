@@ -1940,7 +1940,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 424,
       "berat": 50,
-      "kondisi": "Bekas",
+      "kondisi": "Baru",
       "kualitas": "",
       "kodePart": "",
       "foto": [
