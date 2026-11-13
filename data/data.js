@@ -116,7 +116,7 @@ window.TOKO_DATA = {
       "deskripsi": "Pangkon besi sblh knn\nPangkon besi matic bagian belakang\nTatakn aki diesel\nSeling gas diesel\nSma tongkat matic tanpa seling carnival diesel",
       "spesifikasi": [],
       "unggulan": false,
-      "aktif": true,
+      "aktif": false,
       "variasi": [],
       "shopeeId": "58067752842",
       "linkShopee": "https://shopee.co.id/product/138170857/58067752842"
@@ -1812,7 +1812,7 @@ window.TOKO_DATA = {
       "deskripsi": "Jadi 3 item \n\nSeal debu piston \nSeal dalam piston \nDan karet dudukan kaliper",
       "spesifikasi": [],
       "unggulan": false,
-      "aktif": true,
+      "aktif": false,
       "variasi": [],
       "shopeeId": "44653007117",
       "linkShopee": "https://shopee.co.id/product/138170857/44653007117"
@@ -2252,7 +2252,7 @@ window.TOKO_DATA = {
       "deskripsi": "kabel busi no 1 dan no 6\naltenator 1",
       "spesifikasi": [],
       "unggulan": false,
-      "aktif": true,
+      "aktif": false,
       "variasi": [],
       "shopeeId": "41573156247",
       "linkShopee": "https://shopee.co.id/product/138170857/41573156247"
