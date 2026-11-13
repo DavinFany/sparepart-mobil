@@ -6,15 +6,15 @@
    ========================================================================= */
 window.TOKO_DATA = {
   "toko": {
-    "nama": "SparepartMobil",
-    "tagline": "Sparepart Kia & Chevrolet / Opel — baru & bekas",
-    "whatsapp": "6281234567890",
-    "telepon": "0812-3456-7890",
-    "email": "halo@sparepartmobil.id",
-    "alamat": "Jl. Otomotif Raya No. 88, Jakarta Selatan",
+    "nama": "Fandiz Tehnik",
+    "tagline": "Sparepart Mobil Baru & Bekas",
+    "whatsapp": "6282136788171",
+    "telepon": "0821-3678-8171",
+    "email": "",
+    "alamat": "Jl. Raya Paninggaran, Besuki, Sawangan, Kec. Paninggaran, Kabupaten Pekalongan, Jawa Tengah 51164",
     "jamBuka": "Senin – Sabtu, 08.00 – 17.00 WIB",
-    "instagram": "https://instagram.com/",
-    "mapsUrl": "https://maps.google.com/"
+    "instagram": "",
+    "mapsUrl": "https://maps.app.goo.gl/MenUoGBjtDR3DMLu5?g_st=ic"
   },
   "mobil": [
     {

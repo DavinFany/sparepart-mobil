@@ -51,10 +51,16 @@
 
   /* ---------- Data toko ---------- */
   function isiDataToko() {
-    $$("[data-toko]").forEach((el) => { el.textContent = TOKO[el.dataset.toko] || ""; });
+    $$("[data-toko]").forEach((el) => {
+      el.textContent = TOKO[el.dataset.toko] || "";
+      // Sembunyikan baris kontak yang belum diisi (mis. email kosong)
+      const li = el.closest(".contact__list li");
+      if (li) li.hidden = !TOKO[el.dataset.toko];
+    });
     $$("[data-wa]").forEach((el) => { el.href = waLink(el.dataset.wa); el.target = "_blank"; el.rel = "noopener"; });
-    $("#mapsLink").href = TOKO.mapsUrl || "#";
-    $("#igLink").href = TOKO.instagram || "#";
+    const link = (sel, url) => { const el = $(sel); const ada = /^https?:\/\/.+\/.+/.test(url || ""); el.hidden = !ada; if (ada) el.href = url; };
+    link("#mapsLink", TOKO.mapsUrl);
+    link("#igLink", TOKO.instagram);
     $("#year").textContent = new Date().getFullYear();
     $("#statProduk").textContent = PRODUK.length + (PRODUK.length >= 10 ? "+" : "");
     $("#statMobil").textContent = MOBIL.length;
