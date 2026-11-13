@@ -4649,7 +4649,7 @@ window.TOKO_DATA = {
       "deskripsi": "HLA Adjuster Untuk Kia Carnival Diesel Dan Sedona Diesel\n\nBARANG BARU.. \n\n*Dimohon Untuk Chat Terlebih Dahulu sebelum memesan",
       "spesifikasi": [],
       "unggulan": false,
-      "aktif": true,
+      "aktif": false,
       "variasi": [],
       "shopeeId": "27055857956",
       "linkShopee": "https://shopee.co.id/product/138170857/27055857956"
