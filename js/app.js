@@ -82,7 +82,7 @@
     $("#statProduk").closest("li").hidden = PRODUK.length === 0;
     $("#statMobil").textContent = MOBIL.length;
     const names = MOBIL.map(namaMobil);
-    if (names.length) $("#heroCars").textContent = names.length > 1 ? names.slice(0, -1).join(", ") + " dan " + names.slice(-1) : names[0];
+    if (names.length && $("#heroCars")) $("#heroCars").textContent = names.length > 1 ? names.slice(0, -1).join(", ") + " dan " + names.slice(-1) : names[0];
     document.title = `${TOKO.nama} — ${TOKO.tagline}`;
   }
 
