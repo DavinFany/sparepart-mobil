@@ -63,6 +63,7 @@
     link("#igLink", TOKO.instagram);
     $("#year").textContent = new Date().getFullYear();
     $("#statProduk").textContent = PRODUK.length + (PRODUK.length >= 10 ? "+" : "");
+    $("#statProduk").closest("li").hidden = PRODUK.length === 0;
     $("#statMobil").textContent = MOBIL.length;
     const names = MOBIL.map(namaMobil);
     if (names.length) $("#heroCars").textContent = names.length > 1 ? names.slice(0, -1).join(", ") + " dan " + names.slice(-1) : names[0];
@@ -98,7 +99,7 @@
           <span class="car__brand">${esc(m.merk)}</span>
           <span class="car__name">${esc(m.nama)}</span>
           <span class="car__desc">${esc(m.keterangan || "")}</span>
-          <span class="car__count">${n} produk <span aria-hidden="true">→</span></span>
+          <span class="car__count">${n ? `${n} produk` : "Produk segera hadir"} <span aria-hidden="true">→</span></span>
         </span>
       </a>`;
     }).join("");
@@ -196,6 +197,11 @@
     const list = filterProduk();
     $("#productGrid").innerHTML = list.map(kartu).join("");
     $("#emptyState").hidden = list.length > 0;
+    const kosong = PRODUK.length === 0;
+    $("#emptyTitle").textContent = kosong ? "Katalog sedang diperbarui" : "Part tidak ditemukan";
+    $("#emptyText").textContent = kosong
+      ? "Produk sedang kami tambahkan. Tanyakan stok part yang Anda cari langsung lewat WhatsApp."
+      : "Belum ada di katalog? Kami bisa bantu carikan.";
     $("#resultInfo").textContent = `Menampilkan ${list.length} produk`;
   }
 
