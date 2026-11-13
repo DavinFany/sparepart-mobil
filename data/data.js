@@ -22,7 +22,7 @@ window.TOKO_DATA = {
       "id": "kia-carnival",
       "merk": "Kia",
       "nama": "Carnival",
-      "keterangan": "Generasi YP & KA4",
+      "keterangan": "Generasi Tahun 2000an",
       "bentuk": "mpv",
       "foto": ""
     },
