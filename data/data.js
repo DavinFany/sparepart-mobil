@@ -91,6 +91,26 @@ window.TOKO_DATA = {
   ],
   "produk": [
     {
+      "id": "P-0030",
+      "nama": "Guauaia",
+      "mobil": [
+        "kia-carnival"
+      ],
+      "kategori": "interior",
+      "harga": 51212,
+      "hargaCoret": 0,
+      "stok": 1,
+      "berat": 51212,
+      "kondisi": "Bekas",
+      "kualitas": "",
+      "kodePart": "",
+      "foto": [],
+      "deskripsi": "",
+      "spesifikasi": [],
+      "unggulan": false,
+      "aktif": true
+    },
+    {
       "id": "P-0029",
       "nama": "rwytg4w2SEGYW4",
       "mobil": [
