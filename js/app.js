@@ -381,7 +381,7 @@
       const it = itemCart(id), p = it.p;
       return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}${linkFoto(p, String(id).split("::")[1]) ? `\n   Foto: ${linkFoto(p, String(id).split("::")[1])}` : ""}`;
     });
-    const pesan = `Halo ${TOKO.nama}, saya ingin memesan:\n\n${baris.join("\n\n")}\n\n*Subtotal: ${rupiah(total)}*\nPerkiraan berat: ${window.formatBerat(berat)}\n\nNama:\nAlamat kirim:\nMobil & tahun:\n\nMohon info total dengan ongkir. Terima kasih.`;
+    const pesan = `Halo ${TOKO.nama}, saya ingin memesan:\n\n${baris.join("\n\n")}\n\n*Subtotal: ${rupiah(total)}*\nPerkiraan berat: ${window.formatBerat(berat)}\n\nNama:\nNo. HP:\nAlamat kirim:\n\nMohon info total dengan ongkir. Terima kasih.`;
     window.open(waLink(pesan), "_blank", "noopener");
   }
 
