@@ -9,7 +9,12 @@
   const TOKO = DATA.toko || {};
   const MOBIL = DATA.mobil || [];
   const KATEGORI = DATA.kategori || [];
-  const PRODUK = (DATA.produk || []).filter((p) => p.aktif !== false);
+  const PRODUK = (DATA.produk || []).filter((p) => p.aktif !== false).map((p) => {
+    const v = (Array.isArray(p.variasi) ? p.variasi : []).filter((x) => x && x.nama);
+    if (!v.length) return { ...p, variasi: [] };
+    const harga = v.map((x) => Number(x.harga) || 0);
+    return { ...p, variasi: v, harga: Math.min(...harga), hargaMax: Math.max(...harga), stok: v.reduce((t, x) => t + (Number(x.stok) || 0), 0) };
+  });
   const IKON = window.IKON;
 
   const ikonCart = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 002 1.6h7.7a2 2 0 002-1.5L21 8H6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="20.5" r="1.4" fill="currentColor"/><circle cx="17" cy="20.5" r="1.4" fill="currentColor"/></svg>';
@@ -31,12 +36,23 @@
 
   function media(p, i = 0) {
     const f = fotoProduk(p)[i];
-    return f ? `<img src="${esc(f)}" alt="${esc(p.nama)}" loading="lazy">` : `<span class="ph">${ikonProduk(p)}</span>`;
+    return f ? `<img referrerpolicy="no-referrer" src="${esc(f)}" alt="${esc(p.nama)}" loading="lazy">` : `<span class="ph">${ikonProduk(p)}</span>`;
   }
   function visualMobil(m) {
-    return m.foto ? `<img src="${esc(m.foto)}" alt="${esc(namaMobil(m))}" loading="lazy">` : (window.SILUET[m.bentuk] || window.SILUET.mpv);
+    return m.foto ? `<img referrerpolicy="no-referrer" src="${esc(m.foto)}" alt="${esc(namaMobil(m))}" loading="lazy">` : (window.SILUET[m.bentuk] || window.SILUET.mpv);
   }
   const diskon = (p) => (p.hargaCoret > p.harga ? Math.round((1 - p.harga / p.hargaCoret) * 100) : 0);
+  const adaRentang = (p) => p.variasi.length && p.hargaMax > p.harga;
+  // Item keranjang: "ID" atau "ID::indeksVariasi"
+  function itemCart(key) {
+    const [id, vi] = String(key).split("::");
+    const p = produkById[id];
+    if (!p) return null;
+    if (vi === undefined) return p.variasi.length ? null : { p, nama: p.nama, varian: "", harga: p.harga, stok: p.stok };
+    const v = p.variasi[Number(vi)];
+    if (!v) return null;
+    return { p, nama: `${p.nama} — ${v.nama}`, varian: v.nama, harga: Number(v.harga) || 0, stok: Number(v.stok) || 0 };
+  }
   function stokLabel(p) {
     if (p.stok <= 0) return '<span class="card__stock out">Stok habis — bisa inden</span>';
     if (p.stok <= 5) return `<span class="card__stock low">Sisa ${p.stok} pcs</span>`;
@@ -145,7 +161,7 @@
       if (state.kategori !== "semua" && p.kategori !== state.kategori) return false;
       if (state.kondisi !== "semua" && (p.kondisi || "Baru") !== state.kondisi) return false;
       if (!q) return true;
-      const teks = [p.nama, p.kodePart, p.kondisi, p.kualitas, (kategoriById[p.kategori] || {}).nama,
+      const teks = [p.nama, p.kodePart, p.kondisi, p.kualitas, (kategoriById[p.kategori] || {}).nama, ...p.variasi.map((v) => v.nama),
         ...mobilProduk(p).map((id) => namaMobil(mobilById[id])),
         ...(p.spesifikasi || []).map((s) => s.nilai)].join(" ").toLowerCase();
       return q.split(/\s+/).every((w) => teks.includes(w));
@@ -179,16 +195,19 @@
         <h3 class="card__title" data-detail="${esc(p.id)}">${esc(p.nama)}</h3>
         <p class="card__fit">${esc(mobilTxt)}</p>
         <div class="card__price">
-          <span class="price">${rupiah(p.harga)}</span>
+          <span class="price">${adaRentang(p) ? `<small>mulai</small> ` : ""}${rupiah(p.harga)}</span>
           ${d ? `<span class="price-old">${rupiah(p.hargaCoret)}</span>` : ""}
         </div>
+        ${p.variasi.length ? `<span class="card__var">${p.variasi.length} variasi</span>` : ""}
         <div class="card__foot">${stokLabel(p)}<span class="card__weight">${window.formatBerat(p.berat)}</span></div>
       </div>
       <div class="card__actions">
         <button class="btn btn--outline btn--detail" data-detail="${esc(p.id)}">Detail</button>
         ${habis
           ? `<a class="btn btn--primary" href="${waLink(`Halo, apakah ${p.nama}${p.kodePart ? ` (${p.kodePart})` : ""} bisa inden?`)}" target="_blank" rel="noopener">Tanya Inden</a>`
-          : `<button class="btn btn--primary" data-add="${esc(p.id)}">${ikonCart}<span>Keranjang</span></button>`}
+          : p.variasi.length
+            ? `<button class="btn btn--primary" data-detail="${esc(p.id)}">${ikonCart}<span>Pilih</span></button>`
+            : `<button class="btn btn--primary" data-add="${esc(p.id)}">${ikonCart}<span>Keranjang</span></button>`}
       </div>
     </article>`;
   }
@@ -226,18 +245,20 @@
     $("#modalContent").innerHTML = `<div class="pd">
       <div class="pd__gallery">
         <div class="pd__media" id="pdMain">${media(p)}</div>
-        ${foto.length > 1 ? `<div class="pd__thumbs">${foto.map((f, i) => `<button class="pd__thumb${i === 0 ? " is-active" : ""}" data-foto="${i}" aria-label="Foto ${i + 1}"><img src="${esc(f)}" alt=""></button>`).join("")}</div>` : ""}
+        ${foto.length > 1 ? `<div class="pd__thumbs">${foto.map((f, i) => `<button class="pd__thumb${i === 0 ? " is-active" : ""}" data-foto="${i}" aria-label="Foto ${i + 1}"><img referrerpolicy="no-referrer" src="${esc(f)}" alt=""></button>`).join("")}</div>` : ""}
       </div>
       <div class="pd__info">
         <div class="card__meta">${badgeKondisi(p)}<span>${esc((kategoriById[p.kategori] || {}).nama || "")}</span></div>
         <h2 id="modalTitle">${esc(p.nama)}</h2>
-        <div class="pd__price"><span class="price">${rupiah(p.harga)}</span>${d ? `<span class="price-old">${rupiah(p.hargaCoret)}</span><span class="tag tag--disc">-${d}%</span>` : ""}</div>
-        ${stokLabel(p)}
+        <div class="pd__price"><span class="price" id="pdHarga">${adaRentang(p) ? `${rupiah(p.harga)} – ${rupiah(p.hargaMax)}` : rupiah(p.harga)}</span>${d ? `<span class="price-old">${rupiah(p.hargaCoret)}</span><span class="tag tag--disc">-${d}%</span>` : ""}</div>
+        <div id="pdStok">${stokLabel(p)}</div>
+        ${p.variasi.length ? `<div class="pd__var"><span class="filter-label">Pilih variasi</span><div class="pd__var-list">${p.variasi.map((v, i) => `<button type="button" class="var-btn" data-var="${i}" ${Number(v.stok) > 0 ? "" : "data-habis"}>${esc(v.nama)}</button>`).join("")}</div></div>` : ""}
         ${p.deskripsi ? `<p class="pd__desc">${esc(p.deskripsi).replace(/\n/g, "<br>")}</p>` : ""}
         <table class="spec"><tbody>${spek.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table>
         <div class="pd__actions">
-          ${habis ? "" : `<button class="btn btn--primary btn--block" data-add="${esc(p.id)}">${ikonCart}Tambah ke Keranjang</button>`}
+          ${habis ? "" : `<button class="btn btn--primary btn--block" id="pdAdd" ${p.variasi.length ? "disabled" : ""} data-add="${esc(p.id)}">${ikonCart}<span>${p.variasi.length ? "Pilih variasi dulu" : "Tambah ke Keranjang"}</span></button>`}
           <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${waLink(`Halo, saya tertarik dengan:\n*${p.nama}* (${p.kondisi || "Baru"})\nKode: ${p.id}${p.kodePart ? `\nNo. part: ${p.kodePart}` : ""}\nHarga: ${rupiah(p.harga)}\n\nApakah cocok untuk mobil saya?`)}">${ikonWA}Tanya Kecocokan</a>
+          ${p.linkShopee ? `<a class="btn btn--outline btn--block" target="_blank" rel="noopener" href="${esc(p.linkShopee)}">Lihat / beli di Shopee ↗</a>` : ""}
         </div>
       </div>
     </div>`;
@@ -246,6 +267,21 @@
     $("#productModal").hidden = false;
     document.body.classList.add("no-scroll");
     $("#modalClose").focus();
+  }
+  function pilihVariasi(i) {
+    const p = produkById[$("#modalContent").dataset.id];
+    const v = p.variasi[i];
+    if (!v) return;
+    $$(".var-btn").forEach((b) => b.classList.toggle("is-active", Number(b.dataset.var) === i));
+    $("#pdHarga").textContent = rupiah(v.harga);
+    $("#pdStok").innerHTML = stokLabel({ stok: Number(v.stok) || 0 });
+    const btn = $("#pdAdd");
+    if (btn) {
+      const ada = Number(v.stok) > 0;
+      btn.disabled = !ada;
+      btn.dataset.add = `${p.id}::${i}`;
+      $("span", btn).textContent = ada ? "Tambah ke Keranjang" : "Variasi ini habis";
+    }
   }
   function gantiFoto(i) {
     const p = produkById[$("#modalContent").dataset.id];
@@ -262,14 +298,16 @@
   const CART_KEY = "sparepart_cart";
   let cart = {};
   try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch (e) { cart = {}; }
-  Object.keys(cart).forEach((id) => { if (!produkById[id] || produkById[id].stok <= 0) delete cart[id]; });
+  Object.keys(cart).forEach((k) => { const it = itemCart(k); if (!it || it.stok <= 0) delete cart[k]; });
 
   function simpanCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) { /* abaikan */ } }
   function tambah(id) {
-    const p = produkById[id];
-    if (!p || p.stok <= 0) return;
+    const it = itemCart(id);
+    if (!it) { if (produkById[id]) bukaDetail(id); return; }
+    if (it.stok <= 0) return;
+    const p = { nama: it.nama };
     const qty = (cart[id] || 0) + 1;
-    if (qty > p.stok) { toast(`Stok ${p.nama} hanya ${p.stok} pcs`); return; }
+    if (qty > it.stok) { toast(`Stok ${it.nama} hanya ${it.stok} pcs`); return; }
     cart[id] = qty;
     simpanCart(); renderCart();
     const b = $("#cartCount");
@@ -277,7 +315,7 @@
     toast(`✓ ${p.nama} ditambahkan`);
   }
   function ubahQty(id, delta) {
-    const p = produkById[id];
+    const p = itemCart(id);
     const qty = (cart[id] || 0) + delta;
     if (qty <= 0) delete cart[id];
     else if (qty > p.stok) { toast(`Stok hanya ${p.stok} pcs`); return; }
@@ -289,8 +327,8 @@
     return {
       ids,
       qty: ids.reduce((s, id) => s + cart[id], 0),
-      total: ids.reduce((s, id) => s + cart[id] * produkById[id].harga, 0),
-      berat: ids.reduce((s, id) => s + cart[id] * (Number(produkById[id].berat) || 0), 0),
+      total: ids.reduce((s, id) => s + cart[id] * itemCart(id).harga, 0),
+      berat: ids.reduce((s, id) => s + cart[id] * (Number(itemCart(id).p.berat) || 0), 0),
     };
   }
 
@@ -306,12 +344,13 @@
     }
     $("#cartFoot").hidden = false;
     $("#cartItems").innerHTML = ids.map((id) => {
-      const p = produkById[id];
+      const it = itemCart(id), p = it.p;
       return `<div class="cart-item">
         <div class="cart-item__thumb">${media(p)}</div>
         <div>
           <p class="cart-item__name">${esc(p.nama)}</p>
-          <span class="cart-item__price">${rupiah(p.harga)} · ${p.kondisi || "Baru"}</span>
+          ${it.varian ? `<span class="cart-item__var">Variasi: ${esc(it.varian)}</span>` : ""}
+          <span class="cart-item__price">${rupiah(it.harga)} · ${p.kondisi || "Baru"}</span>
         </div>
         <div class="cart-item__side">
           <div class="qty">
@@ -331,8 +370,8 @@
     const { ids, total, berat } = hitung();
     if (!ids.length) return;
     const baris = ids.map((id, i) => {
-      const p = produkById[id];
-      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(p.harga)} = ${rupiah(p.harga * cart[id])}`;
+      const it = itemCart(id), p = it.p;
+      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}`;
     });
     const pesan = `Halo ${TOKO.nama}, saya ingin memesan:\n\n${baris.join("\n\n")}\n\n*Subtotal: ${rupiah(total)}*\nPerkiraan berat: ${window.formatBerat(berat)}\n\nNama:\nAlamat kirim:\nMobil & tahun:\n\nMohon info total dengan ongkir. Terima kasih.`;
     window.open(waLink(pesan), "_blank", "noopener");
@@ -371,6 +410,8 @@
       const t = e.target;
       const add = t.closest("[data-add]");
       if (add) { tambah(add.dataset.add); return; }
+      const vb = t.closest("[data-var]");
+      if (vb) { pilihVariasi(Number(vb.dataset.var)); return; }
       const foto = t.closest("[data-foto]");
       if (foto) { gantiFoto(Number(foto.dataset.foto)); return; }
       const det = t.closest("[data-detail]");
@@ -415,6 +456,20 @@
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   }
+
+  /* ---------- Foto gagal dimuat → tampilkan ikon ---------- */
+  document.addEventListener("error", (e) => {
+    const img = e.target;
+    if (img.tagName !== "IMG") return;
+    const box = img.closest(".card__media, .pd__media, .cart-item__thumb, .pd__thumb");
+    if (!box) return;
+    const ph = document.createElement("span");
+    ph.className = "ph";
+    const host = box.closest("[data-detail]");
+    const p = produkById[host ? host.dataset.detail : box.closest("#modalContent") ? $("#modalContent").dataset.id : ""];
+    ph.innerHTML = p ? ikonProduk(p) : IKON.lainnya;
+    img.replaceWith(ph);
+  }, true);
 
   /* ---------- Init ---------- */
   isiDataToko();

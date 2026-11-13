@@ -93,6 +93,9 @@
       foto: Array.isArray(p.foto) ? p.foto : p.foto ? [p.foto] : [],
       deskripsi: p.deskripsi || "", spesifikasi: Array.isArray(p.spesifikasi) ? p.spesifikasi : [],
       unggulan: !!p.unggulan, aktif: p.aktif !== false,
+      variasi: (Array.isArray(p.variasi) ? p.variasi : []).map((v) => ({ nama: String(v.nama || ""), harga: Number(v.harga) || 0, stok: Number(v.stok) || 0 })),
+      ...(p.shopeeId ? { shopeeId: String(p.shopeeId) } : {}),
+      ...(p.linkShopee ? { linkShopee: p.linkShopee } : {}),
     }));
     return d;
   }
@@ -313,9 +316,9 @@
   const filt = { q: "", mobil: "semua", kategori: "semua" };
 
   function renderFilterProduk() {
-    $("#fMobil").innerHTML = `<option value="semua">Semua mobil</option>` + S.data.mobil.map((m) => `<option value="${esc(m.id)}">${esc(namaMobil(m))}</option>`).join("");
+    $("#fMobil").innerHTML = `<option value="semua">Semua mobil</option><option value="_none">⚠ Belum ada mobil</option>` + S.data.mobil.map((m) => `<option value="${esc(m.id)}">${esc(namaMobil(m))}</option>`).join("");
     $("#fKategori").innerHTML = `<option value="semua">Semua jenis</option>` + S.data.kategori.map((k) => `<option value="${esc(k.id)}">${esc(k.nama)}</option>`).join("");
-    $("#fMobil").value = S.data.mobil.some((m) => m.id === filt.mobil) ? filt.mobil : "semua";
+    $("#fMobil").value = filt.mobil === "_none" || S.data.mobil.some((m) => m.id === filt.mobil) ? filt.mobil : "semua";
     $("#fKategori").value = S.data.kategori.some((k) => k.id === filt.kategori) ? filt.kategori : "semua";
   }
 
@@ -323,7 +326,7 @@
     const q = filt.q.trim().toLowerCase();
     const list = S.data.produk
       .map((p, i) => ({ p, i }))
-      .filter(({ p }) => (filt.mobil === "semua" || p.mobil.includes(filt.mobil)) && (filt.kategori === "semua" || p.kategori === filt.kategori) && (!q || `${p.nama} ${p.kodePart} ${p.id}`.toLowerCase().includes(q)));
+      .filter(({ p }) => (filt.mobil === "semua" || (filt.mobil === "_none" ? !p.mobil.some((id) => S.data.mobil.some((m) => m.id === id)) : p.mobil.includes(filt.mobil))) && (filt.kategori === "semua" || p.kategori === filt.kategori) && (!q || `${p.nama} ${p.kodePart} ${p.id}`.toLowerCase().includes(q)));
     if (!list.length) {
       $("#plist").innerHTML = `<div class="empty">Belum ada produk${q || filt.mobil !== "semua" || filt.kategori !== "semua" ? " yang cocok dengan filter" : ""}.</div>`;
       return;
@@ -332,7 +335,7 @@
       const kat = S.data.kategori.find((k) => k.id === p.kategori);
       const mobil = p.mobil.map((id) => namaMobil(S.data.mobil.find((m) => m.id === id))).filter(Boolean).join(", ") || "⚠ belum pilih mobil";
       return `<div class="prow${p.aktif ? "" : " is-hidden"}" data-i="${i}">
-        <div class="prow__thumb">${p.foto[0] ? `<img src="${esc(imgSrc(p.foto[0]))}" alt="">` : ikonKat(p.kategori)}</div>
+        <div class="prow__thumb">${p.foto[0] ? `<img referrerpolicy="no-referrer" src="${esc(imgSrc(p.foto[0]))}" alt="">` : ikonKat(p.kategori)}</div>
         <div class="prow__info">
           <div class="prow__name">${esc(p.nama || "(tanpa nama)")}</div>
           <div class="prow__meta">
@@ -342,10 +345,12 @@
           </div>
         </div>
         <div class="prow__fields">
+          ${p.variasi.length ? `<div><span class="mini-label">Harga (Rp)</span><div class="prow__static">${rentang(p)}</div></div>
+          <div><span class="mini-label">Stok</span><div class="prow__static">${p.variasi.reduce((t, v) => t + v.stok, 0)} <small>(${p.variasi.length} variasi)</small></div></div>` : `
           <label><span class="mini-label">Harga (Rp)</span><input class="input" inputmode="numeric" data-f="harga" value="${p.harga.toLocaleString("id-ID")}"></label>
           <label><span class="mini-label">Stok</span>
             <div class="stepper"><button type="button" data-step="-1" aria-label="Kurangi stok">−</button><input inputmode="numeric" data-f="stok" value="${p.stok}"><button type="button" data-step="1" aria-label="Tambah stok">+</button></div>
-          </label>
+          </label>`}
           <label class="switch" title="Tampilkan di website"><input type="checkbox" data-f="aktif" ${p.aktif ? "checked" : ""}><span class="mini-label" style="margin:0">Tampil</span></label>
         </div>
         <div class="prow__actions">
@@ -354,6 +359,12 @@
         </div>
       </div>`;
     }).join("");
+  }
+
+  function rentang(p) {
+    const h = p.variasi.map((v) => v.harga);
+    const a = Math.min(...h), b = Math.max(...h);
+    return a === b ? a.toLocaleString("id-ID") : `${a.toLocaleString("id-ID")} – ${b.toLocaleString("id-ID")}`;
   }
 
   function bindProdukList() {
@@ -407,7 +418,7 @@
     S.editing = i >= 0 ? clone(S.data.produk[i]) : {
       id: idBaru(), nama: "", mobil: filt.mobil !== "semua" ? [filt.mobil] : [], kategori: filt.kategori !== "semua" ? filt.kategori : "",
       harga: 0, hargaCoret: 0, stok: 1, berat: 0, kondisi: "Baru", kualitas: "", kodePart: "", foto: [],
-      deskripsi: "", spesifikasi: [], unggulan: false, aktif: true,
+      deskripsi: "", spesifikasi: [], unggulan: false, aktif: true, variasi: [],
     };
     $("#editorTitle").textContent = i >= 0 ? "Edit Produk" : "Tambah Produk";
     $("#deleteProduk").hidden = i < 0;
@@ -455,6 +466,12 @@
         </div>
       </div>
 
+      <div class="form__section"><h3>Variasi <small class="hint">(opsional, mis. Kiri/Kanan, Panjang/Pendek)</small></h3>
+        <p class="hint" id="varHint">Jika diisi, pembeli memilih variasi dan harga/stok di atas mengikuti variasi.</p>
+        <div class="specs" id="vars"></div>
+        <div class="presets"><button type="button" data-var-add>+ Tambah variasi</button></div>
+      </div>
+
       <div class="form__section"><h3>Foto produk</h3>
         <p class="hint">Foto pertama menjadi foto utama. Foto otomatis dikecilkan agar website tetap cepat.</p>
         <div class="photos" id="photos"></div>
@@ -475,12 +492,32 @@
       </div>`;
     renderFoto();
     renderSpek();
+    renderVariasi();
+  }
+
+  function renderVariasi() {
+    const v = S.editing.variasi;
+    $("#vars").innerHTML = v.length ? `<div class="var-row var-row--head"><span>Nama variasi</span><span>Harga (Rp)</span><span>Stok</span><span></span></div>` + v.map((x, i) => `<div class="var-row">
+        <input class="input" data-var-f="nama" data-i="${i}" value="${esc(x.nama)}" placeholder="mis. Kiri">
+        <input class="input" data-var-f="harga" data-i="${i}" inputmode="numeric" value="${x.harga ? x.harga.toLocaleString("id-ID") : ""}" placeholder="0">
+        <input class="input" data-var-f="stok" data-i="${i}" inputmode="numeric" value="${x.stok}">
+        <button type="button" class="icon-btn" data-var-del="${i}" title="Hapus variasi">✕</button>
+      </div>`).join("") : "";
+    const form = $("#editorForm");
+    const ada = v.length > 0;
+    form.elements.harga.disabled = ada;
+    form.elements.stok.disabled = ada;
+    if (ada) {
+      const h = v.map((x) => x.harga);
+      form.elements.harga.value = Math.min(...h).toLocaleString("id-ID");
+      form.elements.stok.value = v.reduce((t, x) => t + x.stok, 0);
+    }
   }
 
   function renderFoto() {
     const f = S.editing.foto;
     $("#photos").innerHTML = f.map((path, i) => `<div class="photo">
-        <img src="${esc(imgSrc(path))}" alt="">
+        <img referrerpolicy="no-referrer" src="${esc(imgSrc(path))}" alt="">
         ${i === 0 ? '<span class="photo__main">Utama</span>' : ""}
         <div class="photo__tools">
           <button type="button" data-ph="left" data-i="${i}" ${i === 0 ? "disabled" : ""} title="Geser ke kiri">←</button>
@@ -516,14 +553,20 @@
       deskripsi: fd.get("deskripsi").trim(),
       spesifikasi: p.spesifikasi.map((s) => ({ label: s.label.trim(), nilai: s.nilai.trim() })).filter((s) => s.label || s.nilai),
       unggulan: !!fd.get("unggulan"), aktif: !!fd.get("aktif"),
+      variasi: p.variasi.map((v) => ({ nama: v.nama.trim(), harga: v.harga, stok: v.stok })).filter((v) => v.nama),
     };
+    if (out.variasi.length) {
+      out.harga = Math.min(...out.variasi.map((v) => v.harga));
+      out.stok = out.variasi.reduce((t, v) => t + v.stok, 0);
+    }
     if (validate) {
       $$(".is-invalid", form).forEach((el) => el.classList.remove("is-invalid"));
       const err = [];
       if (!out.nama) { err.push("nama produk"); form.elements.nama.classList.add("is-invalid"); }
       if (!out.mobil.length) { err.push("mobil"); $("#cMobil").classList.add("is-invalid"); }
       if (!out.kategori) { err.push("jenis produk"); $("#cKategori").classList.add("is-invalid"); }
-      if (!out.harga) { err.push("harga"); form.elements.harga.classList.add("is-invalid"); }
+      if (out.variasi.some((v) => !v.harga)) { err.push("harga variasi"); $$('[data-var-f="harga"]', form).forEach((el) => { if (!num(el.value)) el.classList.add("is-invalid"); }); }
+      else if (!out.harga) { err.push("harga"); form.elements.harga.classList.add("is-invalid"); }
       if (!out.berat) { err.push("berat"); form.elements.berat.classList.add("is-invalid"); }
       if (err.length) { toast("Lengkapi: " + err.join(", "), true); const f = $(".is-invalid", form); if (f) f.scrollIntoView({ block: "center", behavior: "smooth" }); return null; }
     }
@@ -549,13 +592,22 @@
       const t = e.target;
       if (t.dataset.specL !== undefined) S.editing.spesifikasi[t.dataset.specL].label = t.value;
       if (t.dataset.specV !== undefined) S.editing.spesifikasi[t.dataset.specV].nilai = t.value;
+      if (t.dataset.varF) {
+        const v = S.editing.variasi[t.dataset.i];
+        v[t.dataset.varF] = t.dataset.varF === "nama" ? t.value : num(t.value);
+        if (t.dataset.varF !== "nama") {
+          const h = S.editing.variasi.map((x) => x.harga);
+          form.elements.harga.value = Math.min(...h).toLocaleString("id-ID");
+          form.elements.stok.value = S.editing.variasi.reduce((a, x) => a + x.stok, 0);
+        }
+      }
       if (t.name === "berat") $("#beratInfo").textContent = num(t.value) ? "= " + window.formatBerat(num(t.value)) : "1 kg = 1000 gram.";
       if (t.classList.contains("is-invalid")) t.classList.remove("is-invalid");
       const ch = t.closest(".choice"); if (ch) ch.classList.remove("is-invalid");
     });
     form.addEventListener("focusout", (e) => {
       const t = e.target;
-      if (["harga", "hargaCoret"].includes(t.name) && t.value) t.value = num(t.value).toLocaleString("id-ID");
+      if ((["harga", "hargaCoret"].includes(t.name) || t.dataset.varF === "harga") && t.value) t.value = num(t.value).toLocaleString("id-ID");
     });
     form.addEventListener("click", (e) => {
       const t = e.target.closest("button");
@@ -565,6 +617,12 @@
         renderSpek();
         const ins = $$("[data-spec-v]"); (t.dataset.spec ? ins[ins.length - 1] : $$("[data-spec-l]").pop()).focus();
       }
+      if (t.dataset.varAdd !== undefined) {
+        S.editing.variasi.push({ nama: "", harga: num(form.elements.harga.value), stok: 1 });
+        renderVariasi();
+        $$('[data-var-f="nama"]').pop().focus();
+      }
+      if (t.dataset.varDel !== undefined) { S.editing.variasi.splice(Number(t.dataset.varDel), 1); renderVariasi(); }
       if (t.dataset.specDel !== undefined) { S.editing.spesifikasi.splice(Number(t.dataset.specDel), 1); renderSpek(); }
       if (t.dataset.ph) {
         const i = Number(t.dataset.i), f = S.editing.foto;
@@ -607,7 +665,7 @@
       const n = S.data.produk.filter((p) => p.mobil.includes(m.id)).length;
       return `<div class="row" data-m="${i}">
         <div class="row__top">
-          <div class="row__icon row__icon--car">${m.foto ? `<img src="${esc(imgSrc(m.foto))}" alt="">` : window.SILUET[m.bentuk] || window.SILUET.mpv}</div>
+          <div class="row__icon row__icon--car">${m.foto ? `<img referrerpolicy="no-referrer" src="${esc(imgSrc(m.foto))}" alt="">` : window.SILUET[m.bentuk] || window.SILUET.mpv}</div>
           <div class="row__grow"><div class="row__title">${esc(namaMobil(m) || "(mobil baru)")}</div><div class="row__sub">${n} produk</div></div>
           <button class="icon-btn" data-mv="up" ${i === 0 ? "disabled" : ""} title="Naikkan">↑</button>
           <button class="icon-btn" data-mv="down" ${i === S.data.mobil.length - 1 ? "disabled" : ""} title="Turunkan">↓</button>
