@@ -106,7 +106,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 10000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -131,7 +131,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -156,7 +156,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -181,7 +181,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 100,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -217,7 +217,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -242,7 +242,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 194,
       "berat": 3500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -278,7 +278,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 418,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -324,7 +324,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9990,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -349,7 +349,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 80000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -385,7 +385,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 15000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -410,7 +410,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -437,7 +437,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 80000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -473,7 +473,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -498,7 +498,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 400,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -523,7 +523,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1999,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -559,7 +559,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -584,7 +584,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 99,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -609,7 +609,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 7,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -634,7 +634,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 100,
       "berat": 9000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -659,7 +659,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 11,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -720,7 +720,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -745,7 +745,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 35000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -781,7 +781,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 110,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -806,7 +806,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 80000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -831,7 +831,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 95,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -856,7 +856,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -881,7 +881,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1986,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -917,7 +917,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 2,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1000,7 +1000,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 800,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1025,7 +1025,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 398,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1071,7 +1071,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 99,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1096,7 +1096,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1000,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1121,7 +1121,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 100,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1146,7 +1146,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 35000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1182,7 +1182,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 500,
       "berat": 7500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1234,7 +1234,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1259,7 +1259,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 200,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1295,7 +1295,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 80000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1381,7 +1381,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1406,7 +1406,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1431,7 +1431,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 197,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1467,7 +1467,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 99,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1518,7 +1518,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 18,
       "berat": 700,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1554,7 +1554,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 8000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1605,7 +1605,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 100,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1630,7 +1630,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1666,7 +1666,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 7,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1691,7 +1691,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 109,
       "berat": 100,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1716,7 +1716,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 40,
       "berat": 1200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1752,7 +1752,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 491,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1777,7 +1777,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1802,7 +1802,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1827,7 +1827,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 6000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1852,7 +1852,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1000,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1877,7 +1877,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 17,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1915,7 +1915,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1940,7 +1940,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 424,
       "berat": 50,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1966,7 +1966,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 100,
       "berat": 1800,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -1991,7 +1991,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 40000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2016,7 +2016,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 1200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2041,7 +2041,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 45000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2066,7 +2066,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2091,7 +2091,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2116,7 +2116,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 1500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2141,7 +2141,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 12000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2166,7 +2166,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 400,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2191,7 +2191,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 12,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2242,7 +2242,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2267,7 +2267,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2292,7 +2292,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 110,
       "berat": 400,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2317,7 +2317,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 410,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2374,7 +2374,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 17000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2399,7 +2399,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 40,
       "berat": 11000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2445,7 +2445,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2471,7 +2471,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 25000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2496,7 +2496,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 2,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2521,7 +2521,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 8,
       "berat": 6000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2546,7 +2546,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 700,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2572,7 +2572,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 1800,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2689,7 +2689,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2790,7 +2790,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 350,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2815,7 +2815,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 2,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2865,7 +2865,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 12,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2901,7 +2901,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 38,
       "berat": 100,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2937,7 +2937,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2962,7 +2962,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -2998,7 +2998,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3048,7 +3048,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 40,
       "berat": 6500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3120,7 +3120,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 192,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3181,7 +3181,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3217,7 +3217,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 1500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3242,7 +3242,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3319,7 +3319,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3381,7 +3381,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3406,7 +3406,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 5500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3442,7 +3442,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 16,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3503,7 +3503,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 997,
       "berat": 100,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3528,7 +3528,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 6,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3553,7 +3553,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 700,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3578,7 +3578,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3603,7 +3603,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3704,7 +3704,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 78,
       "berat": 1200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3795,7 +3795,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 24,
       "berat": 2000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3851,7 +3851,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 40,
       "berat": 250,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3897,7 +3897,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 23,
       "berat": 100,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3922,7 +3922,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 97,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3947,7 +3947,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 13,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -3972,7 +3972,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 11,
       "berat": 400,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4034,7 +4034,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4059,7 +4059,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9,
       "berat": 650,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4131,7 +4131,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 4000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4181,7 +4181,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4206,7 +4206,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 6,
       "berat": 5000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4231,7 +4231,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 8,
       "berat": 6000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4317,7 +4317,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 8500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4392,7 +4392,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 10,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4417,7 +4417,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 19,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4442,7 +4442,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 20,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4478,7 +4478,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4504,7 +4504,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 7,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4529,7 +4529,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 700,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4554,7 +4554,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 19,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4639,7 +4639,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4665,7 +4665,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 0,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4736,7 +4736,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 2000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4809,7 +4809,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 9999,
       "berat": 150,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -4884,7 +4884,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 3,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5054,7 +5054,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 1,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5141,7 +5141,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 3,
       "berat": 1500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5238,7 +5238,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 200,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5326,7 +5326,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 1000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5438,7 +5438,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5499,7 +5499,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 169,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5535,7 +5535,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 5,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5621,7 +5621,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 4,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5646,7 +5646,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 10,
       "berat": 2000,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5671,7 +5671,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 15,
       "berat": 500,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
@@ -5707,7 +5707,7 @@ window.TOKO_DATA = {
       "hargaCoret": 0,
       "stok": 3,
       "berat": 300,
-      "kondisi": "Baru",
+      "kondisi": "Bekas",
       "kualitas": "",
       "kodePart": "",
       "foto": [
