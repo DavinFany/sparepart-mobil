@@ -32,6 +32,12 @@
   const namaMobil = (m) => (m ? `${m.merk} ${m.nama}` : "");
   const mobilProduk = (p) => (Array.isArray(p.mobil) ? p.mobil : [p.mobil]).filter(Boolean);
   const fotoProduk = (p) => (Array.isArray(p.foto) ? p.foto : p.foto ? [p.foto] : []).filter(Boolean);
+  // Link foto utama produk (alamat lengkap, agar bisa dibuka dari chat WhatsApp)
+  const linkFoto = (p) => {
+    const f = fotoProduk(p)[0];
+    if (!f) return "";
+    try { return new URL(f, location.href).href; } catch (e) { return ""; }
+  };
   const waLink = (text) => `https://wa.me/${TOKO.whatsapp}?text=${encodeURIComponent(text)}`;
 
   function media(p, i = 0) {
@@ -257,7 +263,7 @@
         <table class="spec"><tbody>${spek.map(([a, b]) => `<tr><td>${esc(a)}</td><td>${esc(b)}</td></tr>`).join("")}</tbody></table>
         <div class="pd__actions">
           ${habis ? "" : `<button class="btn btn--primary btn--block" id="pdAdd" ${p.variasi.length ? "disabled" : ""} data-add="${esc(p.id)}">${ikonCart}<span>${p.variasi.length ? "Pilih variasi dulu" : "Tambah ke Keranjang"}</span></button>`}
-          <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${waLink(`Halo, saya tertarik dengan:\n*${p.nama}* (${p.kondisi || "Baru"})\nKode: ${p.id}${p.kodePart ? `\nNo. part: ${p.kodePart}` : ""}\nHarga: ${rupiah(p.harga)}\n\nApakah cocok untuk mobil saya?`)}">${ikonWA}Tanya Kecocokan</a>
+          <a class="btn btn--wa btn--block" target="_blank" rel="noopener" href="${waLink(`Halo, saya tertarik dengan:\n*${p.nama}* (${p.kondisi || "Baru"})\nKode: ${p.id}${p.kodePart ? `\nNo. part: ${p.kodePart}` : ""}\nHarga: ${rupiah(p.harga)}${linkFoto(p) ? `\nFoto: ${linkFoto(p)}` : ""}\n\nApakah cocok untuk mobil saya?`)}">${ikonWA}Tanya Kecocokan</a>
           <p class="pd__note">Komplain hanya diterima 2x24 jam setelah barang diterima.</p>
           ${p.linkShopee ? `<a class="btn btn--outline btn--block" target="_blank" rel="noopener" href="${esc(p.linkShopee)}">Lihat / beli di Shopee ↗</a>` : ""}
         </div>
@@ -372,7 +378,7 @@
     if (!ids.length) return;
     const baris = ids.map((id, i) => {
       const it = itemCart(id), p = it.p;
-      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}`;
+      return `${i + 1}. ${p.nama} (${p.kondisi || "Baru"})${it.varian ? `\n   Variasi: ${it.varian}` : ""}\n   Kode: ${p.id}${p.kodePart ? ` | No. part: ${p.kodePart}` : ""}\n   ${cart[id]} x ${rupiah(it.harga)} = ${rupiah(it.harga * cart[id])}${linkFoto(p) ? `\n   Foto: ${linkFoto(p)}` : ""}`;
     });
     const pesan = `Halo ${TOKO.nama}, saya ingin memesan:\n\n${baris.join("\n\n")}\n\n*Subtotal: ${rupiah(total)}*\nPerkiraan berat: ${window.formatBerat(berat)}\n\nNama:\nAlamat kirim:\nMobil & tahun:\n\nMohon info total dengan ongkir. Terima kasih.`;
     window.open(waLink(pesan), "_blank", "noopener");
